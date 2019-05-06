@@ -4,7 +4,6 @@ import { MaterialCommunityIcons, Feather } from 'react-native-vector-icons';
 
 import TabNavigator from '../Navigation/TabNavigator'; 
 import { TextInput } from 'react-native-gesture-handler';
-import { DrawerActions } from 'react-navigation';
 
 export default class HomeNavigation extends React.Component {
     static navigationOptions = {

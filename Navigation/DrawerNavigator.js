@@ -1,12 +1,14 @@
 import React from 'react';
-import { Platform, Dimensions } from 'react-native';
-import { createDrawerNavigator, createAppContainer} from 'react-navigation';
+import { Dimensions } from 'react-native';
+import { createDrawerNavigator, createAppContainer, createStackNavigator} from 'react-navigation';
 
 import Profile from '../src/Profile';
-import Home from '../src/Home';
+// import Notification from '../src/Notification';
+// import Message from '../src/Message';
+
 import MenuDrawer from '../component/MenuDrawer';
-import TabNavigator from './TabNavigator';
 import HomeNavigation from '../src/HomeNavigation';
+
 
 
 const WIDTH = Dimensions.get('window').width;

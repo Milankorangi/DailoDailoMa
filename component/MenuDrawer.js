@@ -4,9 +4,6 @@ import { Platform, Dimensions, StyleSheet, View, Text, TouchableOpacity, Image }
 import ad from '../assets/store-ad.png';
 import profile from '../assets/22.png';
 
-const WIDTH = Dimensions.get('window').width;
-const HEIGHT = Dimensions.get('window').height;
-
 export default class MenuDrawer extends React.Component {
   navLink(nav, text) {
     return(
@@ -36,7 +33,7 @@ export default class MenuDrawer extends React.Component {
           </View>
           <View style={styles.middleLinks} >
               {this.navLink('Profile', 'Profile')}
-              {this.navLink('', 'Notification')}
+              {this.navLink('Notification', 'Notification')}
               {this.navLink('MessageSell', 'Messages')}
               {this.navLink('PrivacyPolicy', 'Privacy Policy')}
               {this.navLink('ReportProblem', 'Report a Problem')}

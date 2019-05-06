@@ -5,47 +5,26 @@ import { createStackNavigator, createAppContainer, createMaterialTopTabNavigator
 import MainLogin from './src/MainLogin';
 import Login from './src/Login';
 import SignUp from './src/SignUp';
-import HomeNavigation from './src/HomeNavigation';
-
 import DrawerNavigator from './Navigation/DrawerNavigator';
-import TabNavigator from './Navigation/TabNavigator';
-
-
-
 
 const AppNavigator = createStackNavigator({
-
-      MainLogin: {
-        screen: MainLogin
-      },
-
-      Login: {
-        screen : Login
-      },
-      SignUp: {
-        screen : SignUp
-      },
-      Home : {
-        screen:  DrawerNavigator
-      },
+      MainLogin: { screen: MainLogin },
+      Login: { screen : Login },
+      SignUp: { screen : SignUp },
+      Home : { screen:  DrawerNavigator },
     },
     {
       defaultNavigationOptions: {
         header: null
-    
-    }
-},
-  {
+      }
+    },
+    {
     initialRouteName: 'MainLogin'
-  });
+    }
+);
 
-  AppNavigator.navigationOptions = {
-    header: null
-  };
 
 const AppContainer = createAppContainer(AppNavigator);
-
-
 
 export default class App extends React.Component {
   render() {
