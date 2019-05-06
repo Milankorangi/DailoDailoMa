@@ -8,6 +8,7 @@ import SignUp from './src/SignUp';
 import HomeNavigation from './src/HomeNavigation';
 
 import DrawerNavigator from './Navigation/DrawerNavigator';
+import TabNavigator from './Navigation/TabNavigator';
 
 
 
@@ -26,8 +27,14 @@ const AppNavigator = createStackNavigator({
       },
       Home : {
         screen:  DrawerNavigator
-      }
-  },
+      },
+    },
+    {
+      defaultNavigationOptions: {
+        header: null
+    
+    }
+},
   {
     initialRouteName: 'MainLogin'
   });

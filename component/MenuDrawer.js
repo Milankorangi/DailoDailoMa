@@ -35,7 +35,7 @@ export default class MenuDrawer extends React.Component {
               </View>
           </View>
           <View style={styles.middleLinks} >
-              {this.navLink('Profile', 'profile')}
+              {this.navLink('Profile', 'Profile')}
               {this.navLink('', 'Notification')}
               {this.navLink('MessageSell', 'Messages')}
               {this.navLink('PrivacyPolicy', 'Privacy Policy')}

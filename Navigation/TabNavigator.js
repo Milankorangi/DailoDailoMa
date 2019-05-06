@@ -31,7 +31,8 @@ const TabNavigator = createMaterialTopTabNavigator({
           backgroundColor: '#fff'
         }
       }
-    }
+    },
+
     );
 
     
