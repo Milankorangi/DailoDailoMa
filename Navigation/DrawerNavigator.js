@@ -7,7 +7,10 @@ import Profile from '../src/Profile';
 // import Message from '../src/Message';
 
 import MenuDrawer from '../component/MenuDrawer';
-import HomeNavigation from '../src/HomeNavigation';
+import EditProfile from '../src/EditProfile';
+import Notification from '../src/Notification/Notification';
+import MessageNav from '../src/Message/MessageNav';
+import CatNavigator from './CatNavigator';
 
 
 
@@ -23,15 +26,11 @@ const DrawerConfig = {
 }
 
 const DrawerNavigator = createDrawerNavigator({
-  Home: {
-    screen: HomeNavigation
-  },
-  Profile: {
-    screen: Profile,
-  },
-  // Notification: {
-  //   screen: Notification
-  // },
+  Home: { screen: CatNavigator },
+  EditProfile: { screen: EditProfile },
+  Profile: { screen: Profile },
+  Notification: { screen: Notification },
+  MessageNav: { screen: MessageNav},
   // PrivacyPolicy: {
   //   screen: PrivacyPolicy
   // },

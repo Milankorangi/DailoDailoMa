@@ -28,10 +28,16 @@ export default class Store extends React.Component {
               </View>
               <View style={{flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-end'}}>
                   <View>
-                      <Text style= {{fontSize: 10, color: '#8f939c'}}> See Catagories</Text>
+                    <TouchableOpacity 
+                        onPress={()=> this.props.navigation.navigate('Catagory')}>
+                        <Text style= {{fontSize: 10, color: '#8f939c', paddingLeft: 10}}> See Catagories</Text>
+                    </TouchableOpacity>
                   </View>
                   <View style={{margin: 5, marginRight: 15}}>
-                      <MaterialCommunityIcons name='arrow-down-drop-circle-outline'  size= '15' style= {{}} />
+                      <TouchableOpacity 
+                        onPress={()=> this.props.navigation.navigate('Catagory')}>
+                        <MaterialCommunityIcons name='chevron-right'  size= '15' style= {{color: '#8f939c', paddingTop: 5}} />
+                      </TouchableOpacity>
                   </View>
               </View>
            </View>

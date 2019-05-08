@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Dimensions, StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 
 import ad from '../assets/store-ad.png';
 import profile from '../assets/22.png';
@@ -34,7 +34,7 @@ export default class MenuDrawer extends React.Component {
           <View style={styles.middleLinks} >
               {this.navLink('Profile', 'Profile')}
               {this.navLink('Notification', 'Notification')}
-              {this.navLink('MessageSell', 'Messages')}
+              {this.navLink('MessageNav', 'Messages')}
               {this.navLink('PrivacyPolicy', 'Privacy Policy')}
               {this.navLink('ReportProblem', 'Report a Problem')}
               {this.navLink('LogOut', 'Log Out')}

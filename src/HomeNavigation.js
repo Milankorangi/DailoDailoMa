@@ -5,6 +5,7 @@ import { MaterialCommunityIcons, Feather } from 'react-native-vector-icons';
 import TabNavigator from '../Navigation/TabNavigator'; 
 import { TextInput } from 'react-native-gesture-handler';
 
+
 export default class HomeNavigation extends React.Component {
     static navigationOptions = {
         header: null
@@ -33,13 +34,22 @@ export default class HomeNavigation extends React.Component {
                     autoCorrect= {false}/>   
                 </View>
                 <View style= {styles.third} >
-                        <MaterialCommunityIcons name='bell-outline'  size= '30' style= {{color: '#fff'}} />
+                        <MaterialCommunityIcons 
+                        name='bell-outline'  
+                        size= '30' 
+                        style= {{color: '#fff'}} 
+                        onPress= {()=> {this.props.navigation.navigate('Notification')}}/>
+
                     <View style= {styles.notflex}>
                         <Text style= {styles.notf}> 2</Text>
                     </View>
                 </View>
                 <View style= {styles.forth}>
-                    <Feather name= 'message-circle'  size= '30' style= {{color: '#fff'}} />
+                    <Feather 
+                    name= 'message-circle'  
+                    size= '30' 
+                    style= {{color: '#fff'}} 
+                    onPress= {()=> {this.props.navigation.navigate('MessageNav')}}/>
                 </View>
 
             </View>
@@ -85,7 +95,8 @@ const styles = StyleSheet.create({
 
     forth: {
         width: 50,
-        marginTop: 20
+        marginTop: 20,
+        marginRight: 10
     },
     notflex: {
         height: 14,

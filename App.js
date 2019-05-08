@@ -6,6 +6,7 @@ import MainLogin from './src/MainLogin';
 import Login from './src/Login';
 import SignUp from './src/SignUp';
 import DrawerNavigator from './Navigation/DrawerNavigator';
+import Catagory from './src/Catagory/Catagory';
 
 const AppNavigator = createStackNavigator({
       MainLogin: { screen: MainLogin },

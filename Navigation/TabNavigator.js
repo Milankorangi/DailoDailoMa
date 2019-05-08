@@ -16,7 +16,8 @@ const TabNavigator = createMaterialTopTabNavigator({
       Favourite: {
         screen: Favourite
       }
-    },    
+    },
+     
     {
       tabBarOptions: {
         activeTintColor: 'white',
@@ -25,12 +26,15 @@ const TabNavigator = createMaterialTopTabNavigator({
         },
         style: {
           backgroundColor: '#d2232a',
-          fontSize: 12
+          fontSize: 12,
+         
+
         },
         indicatorStyle: {
           backgroundColor: '#fff'
         }
-      }
+      },
+      initialRouteName: 'Home'
     },
 
     );
