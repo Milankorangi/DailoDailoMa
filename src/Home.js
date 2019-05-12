@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text, Button, Image, TouchableOpacity } from 'react-native';
-import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
+import { MaterialCommunityIcons } from 'react-native-vector-icons';
 
 
 import ad from '../assets/ad.png';
@@ -15,83 +15,105 @@ export default class Home extends React.Component {
 
   render() {
     return (
-        <ScrollView style={styles.container}>
-            <View style= {styles.ad1}>
-                <Image source= {ad} style= {{width: '100%', height: '100%'}}/>
-            </View>
-            <View style= {styles.catagory}>
-                <View style= {styles.explore}>
-                    <View style= {{flex: 1}}>
-                        <Text style= {styles.exploreText}> Explore</Text>
-                    </View>
-                    <View style= {{flex: 1, alignItems: 'flex-end'}}>
-                        <Text style= {styles.see}> See All</Text>
-                    </View>
-                </View>
+        <ScrollView >
+          <View style={styles.container}>
+              <View style= {styles.ad1}>
+                  <Image source= {ad} style= {{width: '100%', height: '100%'}}/>
+              </View>
+              <View style= {styles.catagory}>
+                  <View style= {styles.explore}>
+                      <View style= {{flex: 1}}>
+                          <Text style= {styles.exploreText}> Explore</Text>
+                      </View>
+                      <View style={{flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center'}}>
+                          <View style= {{flex: 10, alignItems: 'flex-end', marginLeft: 5}}>
+                            <TouchableOpacity 
+                                onPress={()=> this.props.navigation.navigate('Catagory')}>
+                                <Text style= {{fontSize: 10, color: '#8f939c', paddingLeft: 15}}> See All</Text>
+                            </TouchableOpacity>
+                          </View>
+                          <View style={{flex: 1, marginRight: 12, alignItems: 'flex-start'}}>
+                              <TouchableOpacity 
+                                onPress={()=> this.props.navigation.navigate('Catagory')}>
+                                <MaterialCommunityIcons name='chevron-right'  size= '15' style= {{color: '#8f939c', paddingTop: 3}} />
+                              </TouchableOpacity>
+                          </View>
+                      </View>
+                  </View>
 
-                <ScrollView
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
+                  <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}>
 
-                >
-                    <View style= {styles.firstCat}>
-                         <Catagory brand="Men's Fashion"/> 
-                         <Catagory brand="Men's Fashion"/> 
-                         <Catagory brand="Men's Fashion"/> 
-                         <Catagory brand="Men's Fashion"/> 
-                         <Catagory brand="Men's Fashion"/> 
-                         <Catagory brand="Men's Fashion"/> 
-                         <Catagory brand="Men's Fashion"/> 
+                      <View style= {styles.firstCat}>
+                          <Catagory brand="Men's Fashion"/> 
+                          <Catagory brand="Men's Fashion"/> 
+                          <Catagory brand="Men's Fashion"/> 
+                          <Catagory brand="Men's Fashion"/> 
+                          <Catagory brand="Men's Fashion"/> 
+                          <Catagory brand="Men's Fashion"/> 
+                          <Catagory brand="Men's Fashion"/> 
 
-                    </View>
+                      </View>
+                    </ScrollView>
+
+                      <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}>
+                      <View style= {styles.secondCat}>
+                          <Catagory brand="Auto Mobiles"/> 
+                          <Catagory brand="Auto Mobiles"/> 
+                          <Catagory brand="Men's Fashion"/> 
+                          <Catagory brand="Men's Fashion"/> 
+                          <Catagory brand="Men's Fashion"/> 
+                          <Catagory brand="Men's Fashion"/> 
+                          <Catagory brand="Men's Fashion"/> 
+                      </View>
                   </ScrollView>
 
-                    <ScrollView
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}>
-                    <View style= {styles.secondCat}>
-                        <Catagory brand="Auto Mobiles"/> 
-                        <Catagory brand="Auto Mobiles"/> 
-                        <Catagory brand="Men's Fashion"/> 
-                        <Catagory brand="Men's Fashion"/> 
-                        <Catagory brand="Men's Fashion"/> 
-                        <Catagory brand="Men's Fashion"/> 
-                        <Catagory brand="Men's Fashion"/> 
+              </View>
+              <View style={styles.fresh}>
+                  <Text style= {styles.freshText}> Fresh Finds</Text>
+              </View>
+              <View style= {styles.grid}>
+                  
+                  <Grid 
+                  profileImage={profile}
+                  productImage={product}
+                  />
+
+                  <View style={styles.gridBox}>
+                      <Image source= {ad} style= {{width: null, height: 303, margin: 8}}/>
+                  </View>
+
+                  <Grid 
+                profileImage={profile}
+                  productImage={product}
+                  />
+                  <Grid 
+                  profileImage={profile}
+                  productImage={product}
+                  />
+                  <Grid 
+                  profileImage={profile}
+                  productImage={product}
+                  />
+                  <Grid 
+                  profileImage={profile}
+                  productImage={product}
+                  />
+              </View>
+                <TouchableOpacity 
+                style= {styles.sellPress}
+                onpress= {()=> this.props.navigation.navigate('sell')}>
+                    <View style= {{flex: 1, justifyContent: 'center', alignItems: 'flex-end'}}>
+                        <MaterialCommunityIcons name='plus'  size= '15' style= {{color: '#fff'}} />
+                    </View> 
+                    <View style= {{flex: 1.5, alignItems: 'flex-start', justifyContent: 'center'}}>
+                        <Text style= {{fontSize: 12, color: '#fff'}}> Sell </Text>
                     </View>
-                </ScrollView>
-
-            </View>
-            <View style={styles.fresh}>
-                <Text style= {styles.freshText}> Fresh Finds</Text>
-            </View>
-            <View style= {styles.grid}>
-                
-                <Grid 
-                profileImage={profile}
-                productImage={product}
-                />
-
-                <View style={styles.gridBox}>
-                    <Image source= {ad} style= {{width: null, height: 303, margin: 8}}/>
-                </View>
-
-                <Grid 
-              profileImage={profile}
-                productImage={product}
-                />
-                <Grid 
-                profileImage={profile}
-                productImage={product}
-                />
-                <Grid 
-                profileImage={profile}
-                productImage={product}
-                />
-                <Grid 
-                profileImage={profile}
-                productImage={product}
-                />
-            </View>
+                </TouchableOpacity>
+              </View>
         </ScrollView>
     );
 
@@ -99,7 +121,10 @@ export default class Home extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  
+  container: {
+    flex: 1,
+  },
+
   ad1: {
     height: 200,
     width: '100%',
@@ -133,7 +158,9 @@ const styles = StyleSheet.create({
    },
   
    fresh: {
+     flex: 1,
      height: 48,
+     alignItems: 'flex-start',
      justifyContent: 'center'
    },
 
@@ -232,6 +259,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row'
+  },
+
+  sellPress: {
+    position: 'absolute',
+    marginLeft: 150,
+    marginTop: 510,
+    alignContent: 'center',
+    flexDirection: 'row', 
+    backgroundColor: '#d2232a',
+    height: 40, 
+    width: 80, 
+    borderRadius: 45,
   }
 
 })

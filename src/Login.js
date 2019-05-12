@@ -1,21 +1,55 @@
 import React from 'react';
 import {
-
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
+  AsyncStorage
 } from 'react-native';
-
 import image from '../assets/bg.png';
 import { TextInput } from 'react-native-gesture-handler';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
+
 
 export default class Login extends React.Component {
-  static navigationOptions = {
-    header: null
+  constructor(props){
+    super(props);
+    this.state= {
+      email: '',
+      password: ''
     }
+    this.login = this.login.bind(this);
+  }
+
+  login= () => {
+    const { email, password } = this.state;
+
+    fetch('http://dev.dailodailoma.com/api/login', {
+      method: 'post',
+      header: {
+        Accept: 'application/json',
+        'Content-type' : 'application/json'
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+    .then((response)=> response.json())
+    .then((responseJson)=> {
+      if(responseJson === true){
+        this.props.navigation.navigate('Home');
+        alert(responseJson)
+      }
+      else{
+        alert('wrong Information');
+      }
+    })
+    .catch((error)=> {
+      console.log(error)
+    })
+
+  }
  
   render() {
     return (
@@ -41,12 +75,11 @@ export default class Login extends React.Component {
               placeholder= 'hello@gmail.com '
               underlineColorAndroid= '#d2232a'
               borderBottomColor= '#d2232a'
-              borderLeftColor= 'white'
-              borderRightColor= 'white'
-              borderTopColor= 'white'
-              borderWidth= '1.5'
-              returnKeyType= 'next' 
-              onSubmitEditing= {()=> this.passwordInput.focus()}
+              borderBottomWidth= '1.5'
+              onChangeText= {(email)=> {
+                this.setState({email})
+              }}
+              value= {this.state.email}
               autoCorrect= {false}/>
           </View>
 
@@ -59,19 +92,18 @@ export default class Login extends React.Component {
               placeholder= '***********' 
               underlineColorAndroid= '#d2232a'
               borderBottomColor= '#d2232a'
-              borderLeftColor= 'white'
-              borderRightColor= 'white'
-              borderTopColor= 'white'
-              borderWidth= '1.5'
-              returnKeyType= 'go'
-              secureTextEntry
-              ref = {(input)=> this.passwordInput = input}/>
+              borderBottomWidth= '1.5'
+              onChangeText= {(password)=> {
+                this.setState({password}) 
+              }}
+              value= {this.state.password}
+              secureTextEntry = {true}/>
           </View>
 
           <View style = {styles.login}>   
             <TouchableOpacity 
               style={styles.buttoncontainer} 
-              onPress={()=> this.props.navigation.navigate('EditProfile')}>
+              onPress={()=>this.login()}>
               <Text style = {styles.logintext}>
                 Login
               </Text>
@@ -80,12 +112,12 @@ export default class Login extends React.Component {
           
           <View style= {styles.signnew}>   
               <Text style={{color: '#8f939c', 
-              fontSize: 14, alignItems: 'flex-start',  paddingTop: 12}}>Want To Create New Account? </Text>
+              fontSize: 14, alignItems: 'flex-start'}}>Want To Create New Account? </Text>
               
               <TouchableOpacity 
                     style={styles.signup} 
                     onPress={()=> this.props.navigation.navigate('SignUp')}>
-                    <Text style= {{color: '#d2232a', alignItems: 'flex-start', paddingTop: 12}} >
+                    <Text style= {{color: '#d2232a', alignItems: 'flex-start'}} >
                       Sign Up
                     </Text>
               </TouchableOpacity>
@@ -109,7 +141,7 @@ const styles = StyleSheet.create({
 
   },
   welcome: {
-    flex: 2,
+    flex: 2.5,
     flexDirection: 'row',
    //justifyContent: 'center',
     alignItems: 'flex-end',
@@ -128,13 +160,13 @@ const styles = StyleSheet.create({
     paddingBottom: 14,
   },
   vemail: {
-    flex: 1.5,
+    flex: 1,
     justifyContent: 'center',
     marginTop: 7
 
   },
   vpassword:{
-    flex: 1.5,
+    flex: 1,
     justifyContent: 'center',
   },
   
@@ -171,6 +203,7 @@ const styles = StyleSheet.create({
   login: {
     flex: 1,
     marginBottom: '1%',
+    marginTop: 20
 
   },
   signnew: {

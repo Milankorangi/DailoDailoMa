@@ -4,13 +4,14 @@ import { MaterialCommunityIcons, Feather } from 'react-native-vector-icons';
 
 import TabNavigator from '../Navigation/TabNavigator'; 
 import { TextInput } from 'react-native-gesture-handler';
+import CatNavigator from '../Navigation/CatNavigator';
 
 
 export default class HomeNavigation extends React.Component {
     static navigationOptions = {
         header: null
     }    
-
+    static router = TabNavigator.router;
   render() {
     return (
         <View style={styles.container}>
@@ -53,12 +54,14 @@ export default class HomeNavigation extends React.Component {
                 </View>
 
             </View>
-            <TabNavigator />
+            {/* <TabNavigator /> */}
+            <TabNavigator navigation= {this.props.navigation} />
         </View>
     );
 
   }
 }
+
 
 const styles = StyleSheet.create({
     container: {

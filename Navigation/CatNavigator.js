@@ -1,18 +1,25 @@
 import React from 'react';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createAppContainer} from 'react-navigation';
 
-import HomeNavigation from '../src/HomeNavigation';
 import Catagory from '../src/Catagory/Catagory';
+import HomeNavigation from '../src/HomeNavigation';
 
 const CatNavigator = createStackNavigator({
-      HomeNavigation: { screen: HomeNavigation },
+      Home : { screen: HomeNavigation},
       Catagory: { screen : Catagory },
     },
     {
         defaultNavigationOptions: {
-          header: null
-        }
+          header: null,
+          
+        },
+    
+    navigationOptions: {
+      header: null,
+      tabBarVisible : false,
+      headerMode: 'none'
     }
+  },
 );
 
 

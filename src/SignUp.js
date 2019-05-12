@@ -30,16 +30,27 @@ export default class SignUp extends React.Component {
         <View style= {styles.container}>
             <View style={styles.viewback}>  
                 <TouchableOpacity 
-                  style={styles.buttonback} 
+                  style={{alignItems: 'flex-start'}} 
                   onPress={()=> this.props.navigation.goBack()}>
-                  <Text style = {styles.back}>
-                    Go Back
-                  </Text>
+                  <View style= {{flexDirection: 'row'}}>
+                      <View>
+                          <MaterialCommunityIcons 
+                          name='chevron-left'  
+                          size= '25'
+                          style= {{color: '#d2232a'}} />
+                      </View>
+                      <View style={{alignItems: 'flex-start', position: 'relative'}}>
+                          <Text style = {styles.back}>
+                            Go Back
+                          </Text>
+                      </View>
+                  </View>
                 </TouchableOpacity>
             </View>
             
             <View style={styles.welcome}> 
-              <Text style={styles.welcometo}>Welcome To </Text><Text style={styles.dailo}> Dailo Dailo Ma </Text>
+              <Text style={styles.welcometo}>Welcome To </Text><Text style={styles.dailo}>
+               Dailo Dailo Ma </Text>
             </View>
             
             <View style= {styles.form}>    
@@ -52,10 +63,7 @@ export default class SignUp extends React.Component {
                 returnKeyType= 'next' 
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
-                borderLeftColor= 'white'
-                borderRightColor= 'white'
-                borderTopColor= 'white'
-                borderWidth= '1.5'
+                borderBottomWidth= '1'
                   onSubmitEditing= {()=> this.passwordInput.focus()}
                 autoCorrect= {false}/>
             </View>
@@ -69,10 +77,7 @@ export default class SignUp extends React.Component {
                 placeholder= 'John.Doe1 '
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
-                borderLeftColor= 'white'
-                borderRightColor= 'white'
-                borderTopColor= 'white'
-                borderWidth= '1.5'
+                borderBottomWidth= '1'
                 returnKeyType= 'next' 
                 onSubmitEditing= {()=> this.passwordInput.focus()}
                 autoCorrect= {false}/>
@@ -87,10 +92,7 @@ export default class SignUp extends React.Component {
                 placeholder= 'hello@gmail.com '
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
-                borderLeftColor= 'white'
-                borderRightColor= 'white'
-                borderTopColor= 'white'
-                borderWidth= '1.5'
+                borderBottomWidth= '1'
                 returnKeyType= 'next' 
                 onSubmitEditing= {()=> this.passwordInput.focus()}
                 autoCorrect= {false}/>
@@ -105,10 +107,7 @@ export default class SignUp extends React.Component {
                 placeholder= '9804355990'
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
-                borderLeftColor= 'white'
-                borderRightColor= 'white'
-                borderTopColor= 'white'
-                borderWidth= '1.5'
+                borderBottomWidth= '1'
                 returnKeyType= 'next' 
                 onSubmitEditing= {()=> this.passwordInput.focus()}
                 autoCorrect= {false}/>
@@ -123,10 +122,7 @@ export default class SignUp extends React.Component {
                 placeholder= '***********' 
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
-                borderLeftColor= 'white'
-                borderRightColor= 'white'
-                borderTopColor= 'white'
-                borderWidth= '1.5'
+                borderBottomWidth= '1'
                 returnKeyType= 'go'
                 secureTextEntry
                 ref = {(input)=> this.passwordInput = input}/>
@@ -141,10 +137,7 @@ export default class SignUp extends React.Component {
                 placeholder= '***********' 
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
-                borderLeftColor= 'white'
-                borderRightColor= 'white'
-                borderTopColor= 'white'
-                borderWidth= '1.5'
+                borderBottomWidth= '1'
                 returnKeyType= 'go'
                 secureTextEntry
                 ref = {(input)=> this.passwordInput = input}/>
@@ -180,12 +173,12 @@ const styles = StyleSheet.create({
     flex:1.5,
     //alignItems: 'flex-end',
     justifyContent: 'flex-end',
+   
    },
-  buttonback: {
-   // flex: 1,
-  },
+
   back: {
     color: '#d2232a',
+    paddingTop: 3.5
   },
   welcome: {
     flex: 1,
@@ -211,11 +204,11 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    paddingBottom: 8,
+    paddingBottom: 10,
     color: '#8f939c',
   },
   input:{
-    paddingBottom: 5,
+    paddingBottom: 8,
   },
 
   login: {

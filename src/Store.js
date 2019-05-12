@@ -26,20 +26,20 @@ export default class Store extends React.Component {
               <View style= {{flex: 1, justifyContent: 'center'}}>
                   <Text style= {{fontSize: 14, color: '#515154', paddingLeft: 16}}> Stores</Text>                
               </View>
-              <View style={{flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                  <View>
-                    <TouchableOpacity 
-                        onPress={()=> this.props.navigation.navigate('Catagory')}>
-                        <Text style= {{fontSize: 10, color: '#8f939c', paddingLeft: 10}}> See Catagories</Text>
-                    </TouchableOpacity>
+              <View style={{flex: 1, alignItems: 'center', flexDirection: 'row'}}>
+                        <View style= {{flex: 10, alignItems: 'flex-end', marginLeft: 5}}>
+                          <TouchableOpacity 
+                              onPress={()=> this.props.navigation.navigate('Catagory')}>
+                              <Text style= {{fontSize: 10, color: '#8f939c', paddingLeft: 20}}> See Catagories </Text>
+                          </TouchableOpacity>
+                        </View>
+                        <View style={{flex: 1, marginRight: 12, alignItems: 'flex-start'}}>
+                            <TouchableOpacity 
+                              onPress={()=> this.props.navigation.navigate('Catagory')}>
+                              <MaterialCommunityIcons name='chevron-right'  size= '15' style= {{color: '#8f939c', paddingTop: 3, paddingRight: 15}} />
+                            </TouchableOpacity>
+                        </View>
                   </View>
-                  <View style={{margin: 5, marginRight: 15}}>
-                      <TouchableOpacity 
-                        onPress={()=> this.props.navigation.navigate('Catagory')}>
-                        <MaterialCommunityIcons name='chevron-right'  size= '15' style= {{color: '#8f939c', paddingTop: 5}} />
-                      </TouchableOpacity>
-                  </View>
-              </View>
            </View>
 
            <View style= {styles.grid}>
