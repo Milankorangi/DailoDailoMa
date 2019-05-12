@@ -9,6 +9,26 @@ export default class Description extends React.Component {
   render(){
     return(
       <View style= {styles.container}>
+          <View style= {styles.header}>
+                <View style= {styles.first}>
+                <TouchableOpacity 
+                    onPress={()=> this.props.navigation.goBack()}>
+                    <MaterialCommunityIcons name='arrow-left'  size= '25' style= {{color: '#fff' }} />
+                </TouchableOpacity>
+                </View>
+                <View style= {styles.second}>
+                    <Text style= {{fontSize: 18, color: '#fff'}}> Add Description </Text>   
+                </View>
+                
+                <View style= {styles.third}>
+                <TouchableOpacity 
+                    onPress={()=> this.props.navigation.navigate('ContactInformation')}>
+                    <Text style= {{fontSize: 12, color: '#fff', justifyContent: 'flex-end', paddingRight: 10}}> Next</Text>
+                </TouchableOpacity>
+                </View>
+
+          </View>
+
           <View style= {styles.listingname}>     
                 <Text style= {styles.heading}>
                   LISTING NAME
@@ -138,6 +158,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     
   },
+
+  header: {
+    height: 56,
+    backgroundColor: '#d2232a',
+    flexDirection: 'row',
+    alignItems: 'center',
+
+  },
+
+  first: {
+      width: 50,
+      marginLeft: 16,
+      marginTop: 20
+
+  },
+
+  second: {
+      width: 230,
+      marginTop: 20,
+      justifyContent: 'center',
+      alignItems: 'center'
+
+  },
+
+  third: {
+      width: 70,
+      marginTop: 20,
+      alignItems: 'flex-end',
+      marginRight: 16
+  },
+
 
 listingname: {
   flex: 1

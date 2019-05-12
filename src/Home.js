@@ -103,9 +103,10 @@ export default class Home extends React.Component {
                   productImage={product}
                   />
               </View>
+              {/* <View> */}
                 <TouchableOpacity 
                 style= {styles.sellPress}
-                onpress= {()=> this.props.navigation.navigate('sell')}>
+                onPress={()=> this.props.navigation.navigate('Sell')}>
                     <View style= {{flex: 1, justifyContent: 'center', alignItems: 'flex-end'}}>
                         <MaterialCommunityIcons name='plus'  size= '15' style= {{color: '#fff'}} />
                     </View> 
@@ -113,6 +114,7 @@ export default class Home extends React.Component {
                         <Text style= {{fontSize: 12, color: '#fff'}}> Sell </Text>
                     </View>
                 </TouchableOpacity>
+              {/* </View> */}
               </View>
         </ScrollView>
     );

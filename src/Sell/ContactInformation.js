@@ -4,9 +4,9 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ImageBackground,
   TextInput
 } from 'react-native';
+import { MaterialCommunityIcons } from 'react-native-vector-icons';
 
 import ToggleSwtich from 'toggle-switch-react-native';
 
@@ -16,6 +16,26 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style= {styles.container}>
+        <View style= {styles.header}>
+                <View style= {styles.first}>
+                <TouchableOpacity 
+                    onPress={()=> this.props.navigation.goBack()}>
+                    <MaterialCommunityIcons name='arrow-left'  size= '25' style= {{color: '#fff' }} />
+                </TouchableOpacity>
+                </View>
+                <View style= {styles.second}>
+                    <Text style= {{fontSize: 18, color: '#fff'}}> Contact Information </Text>   
+                </View>
+                
+                <View style= {styles.third}>
+                <TouchableOpacity 
+                    onPress={()=> this.props.navigation.navigate('FinalSell')}>
+                    <Text style= {{fontSize: 12, color: '#fff', justifyContent: 'flex-end', paddingRight: 10}}> Next</Text>
+                </TouchableOpacity>
+                </View>
+
+          </View>
+
         <View style= {styles.top}>
           <View style= {{flex: 3}}> 
               <View style= {styles.black}> 
@@ -109,6 +129,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#edf0f7'
 
   },
+  
+  header: {
+    height: 56,
+    backgroundColor: '#d2232a',
+    flexDirection: 'row',
+    alignItems: 'center',
+
+  },
+
+  first: {
+      width: 50,
+      marginLeft: 16,
+      marginTop: 20
+
+  },
+
+  second: {
+      width: 230,
+      marginTop: 20,
+      justifyContent: 'center',
+      alignItems: 'center'
+
+  },
+
+  third: {
+      width: 70,
+      marginTop: 20,
+      alignItems: 'flex-end',
+      marginRight: 16
+  },
+
   top: {
     flex: 1.125,
   },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
 import ImagePicker from 'react-native-image-picker';
 
@@ -54,17 +54,22 @@ export default class Sell extends React.Component {
           </View>
 
           <View style= {styles.camera}>
+                <View style= {styles.show}>
+                    <Image source= {image1} style= {{flex:1, height: null, width: null}}/>
+                </View>
+                <View style= {styles.show}>
+                    <Image source= {image2} style= {{flex:1, height: null, width: null}}/>
+                </View>
+                <View style= {styles.show}>
+                    <Image source= {image3} style= {{flex:1, height: null, width: null}}/>
+                </View>
+
                 <View style= {styles.add} >
                     < TouchableOpacity 
                         onPress={this.openCamera}>
                         <FontAwesome name="camera" size= "60"/>
                     </TouchableOpacity>
                   </View>
-
-                <View style= {styles.show}>
-
-                 </View>
-
           </View>
 
           <View style= {styles.catagory}>
@@ -110,7 +115,8 @@ const styles = StyleSheet.create({
 
   },
   add: {
-    flex: 1,
+    height: 98,
+    width: 98,
     backgroundColor: '#8f939c',
     margin: 16,
     borderRadius: 4,
@@ -119,7 +125,15 @@ const styles = StyleSheet.create({
 
   },
   show: {
-    flex:2
+    height: 98,
+    width: 98,
+    backgroundColor: '#8f939c',
+    margin: 16,
+    marginLeft: 8,
+    marginLeft: 8,
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center'
 
   },
 
