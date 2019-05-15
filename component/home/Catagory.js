@@ -1,7 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text, Button, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Button, Image, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
-
 
 
 export default class Catagory extends React.Component {

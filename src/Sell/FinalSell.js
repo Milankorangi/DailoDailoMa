@@ -3,11 +3,16 @@ import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
 import ImagePicker from 'react-native-image-picker';
 
+import image1 from '../../assets/29.png';
+import image2 from '../../assets/26.png';
+import image3 from '../../assets/23.png';
+
+
 const options ={
   title: 'Choose Image Options',
   takePhotoButtonTitle: 'Open Camera',
   chooseFromLibraryButtonTitle: 'Choose From Library'
-}
+  }
 
 export default class Sell extends React.Component {
   static navigationOptions = {
@@ -44,7 +49,7 @@ export default class Sell extends React.Component {
           <View style= {styles.header}>
                   <View style= {styles.first}>
                   <TouchableOpacity 
-                      onPress={()=> this.props.navigation.navigate('Home')}>
+                      onPress={()=> this.props.navigation.goBack()}>
                       <MaterialCommunityIcons name='arrow-left'  size= '25' style= {{color: '#fff' }} />
                   </TouchableOpacity>
                   </View>
@@ -55,13 +60,13 @@ export default class Sell extends React.Component {
 
           <View style= {styles.camera}>
                 <View style= {styles.show}>
-                    <Image source= {image1} style= {{flex:1, height: null, width: null}}/>
+                    <Image source= {image1} />
                 </View>
                 <View style= {styles.show}>
-                    <Image source= {image2} style= {{flex:1, height: null, width: null}}/>
+                    <Image source= {image2} />
                 </View>
                 <View style= {styles.show}>
-                    <Image source= {image3} style= {{flex:1, height: null, width: null}}/>
+                    <Image source= {image3} />
                 </View>
 
                 <View style= {styles.add} >
@@ -80,11 +85,17 @@ export default class Sell extends React.Component {
           </View >
 
           <View style= {styles.description}>
-              <Text style= {styles.text}> Add Description </Text>
+            <TouchableOpacity
+            onPress={()=> this.props.navigation.navigate('Description')} >
+                <Text style= {styles.text}> Add Description </Text>
+            </TouchableOpacity>
           </View >
 
           <View style= {styles.information}>
+          <TouchableOpacity
+            onPress={()=> this.props.navigation.navigate('ContactInformation')} >
               <Text style= {styles.text}> Contact Information </Text>
+            </TouchableOpacity>
           </View>
 
           <View style= {styles.sell}>
@@ -115,22 +126,23 @@ const styles = StyleSheet.create({
 
   },
   add: {
-    height: 98,
-    width: 98,
+    height: 97,
+    width: 97,
     backgroundColor: '#8f939c',
     margin: 16,
+    marginLeft: 8,
     borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center'
 
   },
   show: {
-    height: 98,
-    width: 98,
+    height: 97,
+    width: 97,
     backgroundColor: '#8f939c',
     margin: 16,
     marginLeft: 8,
-    marginLeft: 8,
+    marginRight: 8,
     borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center'

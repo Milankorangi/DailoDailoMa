@@ -4,6 +4,7 @@ import { createStackNavigator, createAppContainer} from 'react-navigation';
 import Catagory from '../src/Catagory/Catagory';
 import HomeNavigation from '../src/HomeNavigation';
 import SellNavigation from './SellNavigation';
+import StoreDetails from '../src/StoreDetails';
 
 // import Sell from '../src/Sell/Sell';
 // import Catagories from '../src/Sell/Catagories';
@@ -16,6 +17,7 @@ const CatNavigator = createStackNavigator({
       Home : { screen: HomeNavigation},
       Catagory: { screen : Catagory },
       SellNavigation: { screen : SellNavigation },
+      StoreDetails: { screen : StoreDetails }
     //   Sell: { screen: Sell },
     //   Catagories: { screen: Catagories },
     //   Description: { screen: Description },

@@ -114,7 +114,6 @@ export default class Home extends React.Component {
                         <Text style= {{fontSize: 12, color: '#fff'}}> Sell </Text>
                     </View>
                 </TouchableOpacity>
-              {/* </View> */}
               </View>
         </ScrollView>
     );
@@ -273,6 +272,6 @@ const styles = StyleSheet.create({
     height: 40, 
     width: 80, 
     borderRadius: 45,
-  }
+  },
 
 })

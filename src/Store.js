@@ -2,6 +2,8 @@ import React from 'react';
 import {ScrollView, StyleSheet, View, Text,Image, Button, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
 
+import StoreDetailsComponent from '../component/Store/StoreComponent';
+
 import cover from '../assets/store.png';
 import ad from '../assets/store-ad.png';
 import first from '../assets/store2.png';
@@ -11,6 +13,7 @@ import third from '../assets/store4.png';
 import profile1 from '../assets/store-tag.png';
 import profile2 from '../assets/store-tag-2.png';
 import profile3 from '../assets/store4-tag.png';
+import StoreComponent from '../component/Store/StoreComponent';
 
 
 export default class Store extends React.Component {
@@ -44,64 +47,36 @@ export default class Store extends React.Component {
 
            <View style= {styles.grid}>
               <View style= {styles.box}> 
-                  <View style= {styles.salePicture}>
-                      <Image source= {first} style= {{width: '100%', height: '100%', borderRadius: 2}}/>
-                  </View>
-
-                  <View style= {{flexDirection: 'row'}}>
-                      <View style= {{width: 46, margin: 8, marginTop: 0, height: 64}}>
-                          <Image source= {profile1} style= {{width: '100%', height: '100%'}}/>
-                      </View>
-                      <View>
-                        <View style= {{height: 18, justifyContent: 'center'}}>
-                            <Text style= {styles.cato}> Clothing </Text>
-                        </View>
-                        <View style= {{justifyContent: 'center', flexWrap: 'wrap', width: 112}}>
-                            <Text styles= {styles.catoName}> Annapurna Clothing Store </Text>
-                        </View> 
-                      </View>
-                  </View>
+                <TouchableOpacity
+                onPress={()=> this.props.navigation.navigate('StoreDetails')}>
+                  <StoreComponent
+                  picture= "first"
+                  profileimage= "profile1"
+                  brand= "Clothing"
+                  storeName= "Annapurna Clothing Store" />
+                </TouchableOpacity >
               </View>
 
               <View style= {styles.box}> 
-                  <View style= {styles.salePicture}>
-                      <Image source= {second} style= {{width: '100%', height: '100%', borderRadius: 2}}/>
-                  </View>
-
-                  <View style= {{flexDirection: 'row'}}>
-                      <View style= {{width: 46, margin: 8, marginTop: 0, height: 64}}>
-                          <Image source= {profile2} style= {{width: '100%', height: '100%'}}/>
-                      </View>
-                      <View>
-                        <View style= {{height: 18, justifyContent: 'center'}}>
-                            <Text style= {styles.cato}> Clothing </Text>
-                        </View>
-                        <View style= {{justifyContent: 'center', flexWrap: 'wrap', width: 112}}>
-                            <Text styles= {styles.catoName}> New Tandoori Fast Food Restaurant</Text>
-                        </View> 
-                      </View>
-                  </View>
+                <TouchableOpacity
+                onPress={()=> this.props.navigation.navigate('StoreDetails')}>
+                  <StoreComponent
+                  picture= "second"
+                  profileimage= "profile2"
+                  brand= "Restaurant"
+                  storeName= "New Tandoori Fast Food and Restaurant" />
+                </TouchableOpacity >
               </View>
 
               <View style= {styles.box}> 
-                  <View style= {styles.salePicture}>
-                      <Image source= {third} style= {{width: '100%', height: '100%', borderRadius: 2}}/>
-                  </View>
-
-                  <View style= {{flexDirection: 'row'}}>
-                      <View style= {{width: 46, margin: 8, marginTop: 0, height: 64}}>
-                          <Image source= {profile3} style= {{width: '100%', height: '100%'}}/>
-                      </View>
-                      <View>
-                        <View style= {{height: 18, justifyContent: 'center'}}>
-                            <Text style= {styles.cato}> Clothing </Text>
-                        </View>
-                        <View style= {{justifyContent: 'center', flexWrap: 'wrap', width: 112}}>
-                            <Text styles= {styles.catoName}> Annapurna Sweets & Fast Food Restaurant 
-                            </Text>
-                        </View> 
-                      </View>
-                  </View>
+                <TouchableOpacity
+                onPress={()=> this.props.navigation.navigate('StoreDetails')}>
+                  <StoreComponent
+                  picture= "third"
+                  profileimage= "profile3"
+                  brand= "Restaurant"
+                  storeName= "Annapurna Clothing Store" />
+                </TouchableOpacity >
               </View>
 
               <View style= {styles.box}> 
@@ -143,25 +118,13 @@ const styles = StyleSheet.create({
    },
 
    box: {
-     height: 248,
-     width: '45.5%',
-     backgroundColor: '#fff',
-     margin: 8
-   },
-   salePicture: {
-     height: 160,
-     margin: 8
-   },
+    height: 248,
+    width: '45.5%',
+    backgroundColor: '#fff',
+    margin: 8
+  },
 
-   cato: {
-    fontSize: 12,
-    color: '#8f939c'
-   },
 
-   catoName: {
-    fontSize: 12,
-    color: '#4d4e53'
-   }
 
 
 

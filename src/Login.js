@@ -21,32 +21,44 @@ export default class Login extends React.Component {
     this.login = this.login.bind(this);
   }
 
-  login= () => {
-    const { email, password } = this.state;
 
+  componentDidMount(){
+    this._loadInitialState().done();
+  }
+
+  _loadInitialState = async () => {
+    var value = await AsyncStorage.getItem('user');
+    if(value !== null) {
+      this.props.navigation.navigate('Home');
+    }
+  }
+
+  login = () => {
     fetch('http://dev.dailodailoma.com/api/login', {
-      method: 'post',
-      header: {
-        Accept: 'application/json',
-        'Content-type' : 'application/json'
+      method: 'POST',
+      headers: {
+        'XMLHttpRequest' : 'X-Requested-With',
+        'Content-type' : 'application/json',
+        
       },
       body: JSON.stringify({
         email: this.state.email,
         password: this.state.password
       })
     })
-    .then((response)=> response.json())
+    .then((response)=> response.text())
     .then((responseJson)=> {
-      if(responseJson === true){
+      alert(responseJson);
+      if(responseJson.status == 'success' ){
+        // AsyncStorage.setItem('user', responseJson.user);
         this.props.navigation.navigate('Home');
-        alert(responseJson)
       }
       else{
-        alert('wrong Information');
+        alert(responseJson.message);
       }
     })
     .catch((error)=> {
-      console.log(error)
+      console.log('error is', error);
     })
 
   }
@@ -103,7 +115,7 @@ export default class Login extends React.Component {
           <View style = {styles.login}>   
             <TouchableOpacity 
               style={styles.buttoncontainer} 
-              onPress={()=>this.login()}>
+              onPress={this.login}>
               <Text style = {styles.logintext}>
                 Login
               </Text>

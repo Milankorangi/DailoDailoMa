@@ -75,11 +75,17 @@ export default class Sell extends React.Component {
           </View >
 
           <View style= {styles.description}>
-              <Text style= {styles.text}> Add Description </Text>
+            <TouchableOpacity
+            onPress={()=> this.props.navigation.navigate('Description')} >
+                <Text style= {styles.text}> Add Description </Text>
+            </TouchableOpacity>
           </View >
 
           <View style= {styles.information}>
+          <TouchableOpacity
+            onPress={()=> this.props.navigation.navigate('ContactInformation')} >
               <Text style= {styles.text}> Contact Information </Text>
+            </TouchableOpacity>
           </View>
 
           <View style= {styles.sell}>
