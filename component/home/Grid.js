@@ -19,25 +19,32 @@ export default class Grid extends React.Component {
                     </View>
                     <View>
                         <Text style= {{color: '#8f939c', fontSize: 10}}> 1 day ago</Text>
-                    </View>
-                    
+                    </View>                    
                 </View>
                 <View style = {{alignItems :'flex-end', justifyContent: 'center', flex: 1}}>
                     <MaterialCommunityIcons name='dots-horizontal'  size= '20' style= {{ color: '#8f939c', paddingRight: 16}} />
                 </View> 
             </View>
+
+
             <View style= {styles.box2}>
                 <Image source= {this.props.productImage} style={{width: '90%', height: '90%', margin: 8}}/>
             </View>
+
+            
             <View style= {styles.box3}>
-                <Text style= {{font: 12, color: '#262629', paddingRight: 4}}> Fusce auctor bibendum</Text>
+                <Text style= {{font: 12, color: '#262629', paddingRight: 4}}> {this.props.title} </Text>
             </View>
-            <View style= {styles.box3}>
-                <Text style= {{font: 9, color: '#8f939c', paddingLeft: 4}}> Nulla facilisi. Morbi facilisis malesuada turpis, sed malesuada ipsum.</Text>
+
+
+            <View style= {styles.box4}>
+                <Text style= {{font: 9, color: '#8f939c', paddingLeft: 4}}> {this.props.description}</Text>
             </View>
+
+
             <View style= {styles.box5}>
                 <View>
-                    <Text style= {{font: 11, color: '#262629', paddingLeft: 4}}> Rs 5000000</Text>
+                    <Text style= {{font: 11, color: '#262629', paddingLeft: 4}}> Rs {this.props.price}</Text>
                 </View>
                 <View style= {{flex: 1, alignItems: 'flex-end', marginRight: 8}}>
                     <View style= {styles.like}> 
@@ -50,6 +57,8 @@ export default class Grid extends React.Component {
                     </View>
                 </View>
             </View>
+
+
     </View>
     );
 
@@ -75,9 +84,14 @@ const styles = StyleSheet.create({
         height: 176,
       },
       box3: {
+        height: 20,
         justifyContent: 'center'
       },
-    
+
+      box4: {
+        height: 56,
+        justifyContent: 'center'
+      },    
       
       profileName: {
         fontSize: 10,

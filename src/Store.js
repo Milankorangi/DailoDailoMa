@@ -50,8 +50,8 @@ export default class Store extends React.Component {
                 <TouchableOpacity
                 onPress={()=> this.props.navigation.navigate('StoreDetails')}>
                   <StoreComponent
-                  picture= "first"
-                  profileimage= "profile1"
+                  picture= {first}
+                  profileimage= {profile1}
                   brand= "Clothing"
                   storeName= "Annapurna Clothing Store" />
                 </TouchableOpacity >
@@ -61,8 +61,8 @@ export default class Store extends React.Component {
                 <TouchableOpacity
                 onPress={()=> this.props.navigation.navigate('StoreDetails')}>
                   <StoreComponent
-                  picture= "second"
-                  profileimage= "profile2"
+                  picture= {second}
+                  profileimage= {profile2}
                   brand= "Restaurant"
                   storeName= "New Tandoori Fast Food and Restaurant" />
                 </TouchableOpacity >
@@ -72,9 +72,9 @@ export default class Store extends React.Component {
                 <TouchableOpacity
                 onPress={()=> this.props.navigation.navigate('StoreDetails')}>
                   <StoreComponent
-                  picture= "third"
-                  profileimage= "profile3"
-                  brand= "Restaurant"
+                  picture= {third}
+                  profileimage= {profile3}
+                  brand= "{Restaurant}"
                   storeName= "Annapurna Clothing Store" />
                 </TouchableOpacity >
               </View>

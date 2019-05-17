@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import image from '../assets/bg.png';
 import { TextInput } from 'react-native-gesture-handler';
+import axios from 'axios';
 
 
 export default class Login extends React.Component {
@@ -20,7 +21,6 @@ export default class Login extends React.Component {
     }
     this.login = this.login.bind(this);
   }
-
 
   componentDidMount(){
     this._loadInitialState().done();
@@ -37,7 +37,7 @@ export default class Login extends React.Component {
     fetch('http://dev.dailodailoma.com/api/login', {
       method: 'POST',
       headers: {
-        'XMLHttpRequest' : 'X-Requested-With',
+        'Accept' : 'application/json',
         'Content-type' : 'application/json',
         
       },
@@ -46,11 +46,10 @@ export default class Login extends React.Component {
         password: this.state.password
       })
     })
-    .then((response)=> response.text())
+    .then((response)=> response.json())
     .then((responseJson)=> {
-      alert(responseJson);
       if(responseJson.status == 'success' ){
-        // AsyncStorage.setItem('user', responseJson.user);
+        AsyncStorage.setItem('user', responseJson.token);
         this.props.navigation.navigate('Home');
       }
       else{
@@ -60,6 +59,19 @@ export default class Login extends React.Component {
     .catch((error)=> {
       console.log('error is', error);
     })
+
+    // axios.post('http://dev.dailodailoma.com/api/login', {
+    //   'email': 'this.state.email',
+    //   'password': 'this.state.password'
+    // },
+    // {
+    //   headers: {
+    //     'XMLHttpRequest' : 'X-Requested-With',
+    //     'Content-type' : 'application/json',
+    //   }
+    // }).then(response=> {
+    //   alert(response)
+    // })
 
   }
  

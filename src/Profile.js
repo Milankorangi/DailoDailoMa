@@ -4,12 +4,39 @@ import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
 
 import mainProfile from '../assets/22.png';
 import profile from '../assets/15.png';
-import product from '../assets/11.png';
 
 import Grid from '../component/home/Grid';
 
 
 export default class Profile extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            productList : ''
+        }
+    }
+
+
+    componentDidMount(){
+        fetch('http://dev.dailodailoma.com/api/products', {
+          method: 'GET',
+          headers: {
+            'Accept' : 'application/json',
+            'Content-type' : 'application/json',
+            'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImE3ODQ2YjhiZDRhZWViMTY0NDliNmZiZDVmMGQ0NWQxYjE4NDIxMmIwM2UxNjUyYzRlOTMzNGVlOGI4ZTJjMWIxZDcxZGFiM2NkZmJhNzhhIn0.eyJhdWQiOiIxIiwianRpIjoiYTc4NDZiOGJkNGFlZWIxNjQ0OWI2ZmJkNWYwZDQ1ZDFiMTg0MjEyYjAzZTE2NTJjNGU5MzM0ZWU4YjhlMmMxYjFkNzFkYWIzY2RmYmE3OGEiLCJpYXQiOjE1NTgwNjgxMDYsIm5iZiI6MTU1ODA2ODEwNiwiZXhwIjoxNTg5NjkwNTA2LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.di5EhKLwxC6oivyhbQFd32VILRPZZ_P0RQZ2GjPmPngJeAGQ23Qw6YVDTte_vxScZzPG8Dbxe8OpzmP4ccG0-nNTwvvQ6m1cm8lUqH_qefrxt6O8RcNqxxxF5X1syZHl9QyjLC5mznsaxrmlueZmAuivzmNH3YM7Y7bS9kqek7SPNtQmjB2vI2WjNwOuroeZUTsUuREOuLrzkI3TLNIP6x5h21MdVkf7Opeu8trDxUNRY3gRzswJemt95DkgKkFg0U5XpmKM6IqYcvvOiLF1s8GKgK8Z8AFUotbfUbDQJgQtMCqJyIfXO9yTRrwgs2QBZm521a6ExIaleEzLuw_OuzCtu9cNOVpLluHZeSAG8B1gvzVU0fMuZAtTY5LuI1VHmywH_PGbJ_br1hzSrosfALQg2XMB0S7Ecm8YzPIedl62FUAIpHD-O8PVavnmiHUOEtzyJBZ-WE2V9S51a94pkQxeNFZWAvzok7G5PubZX7AEqK1nUG-prnPcKb9SSBdQtoPayY9INUpgwNStlLbIzWb2PojMdDD300ExAY6u7zSP8LjW3wi5RDye1qU_8onOOc_NI0hRCes21SVOQvMTALbKYhOxQjgFOvmjGxl0mPtwzCjAVEH6kO1MejCgm4m1Y76ncgpsxvkfdwSsiDnA42ZFStd3grSUQQYLsfqcYZA'
+          }
+        })
+        .then((response)=> response.json())
+        .then((responseJson)=> {
+            this.setState({productList : responseJson.data.data});
+            // console.log(this.state.productList);
+
+        })
+        .catch((error)=> {
+          console.log('error is', error);
+        })
+      }
+    
     
   render() {
     return (
@@ -82,34 +109,18 @@ export default class Profile extends React.Component {
             </View>
 
             <View style= {styles.grid}>
-                    
-                    <Grid 
-                    profileImage={profile}
-                    productImage={product}
-                    />
-
-                    <Grid 
-                profileImage={profile}
-                    productImage={product}
-                    />
-
-                    <Grid 
-                profileImage={profile}
-                    productImage={product}
-                    />
-                    <Grid 
-                    profileImage={profile}
-                    productImage={product}
-                    />
-                    <Grid 
-                    profileImage={profile}
-                    productImage={product}
-                    />
-                    <Grid 
-                    profileImage={profile}
-                    productImage={product}
-                    />
-                </View>
+                {/* {console.log(this.state.productList)} */}
+               {Object.keys(this.state.productList).map((i)=> {
+                    return(
+                            <Grid profileImage = {profile}
+                                productImage = {this.state.productList[i].image}
+                                title = {this.state.productList[i].title}
+                                description = {this.state.productList[i].description}
+                                price = {this.state.productList[i].price}
+                         />                 
+                    )
+                })} 
+            </View> 
 
         </ScrollView> 
 </View>
