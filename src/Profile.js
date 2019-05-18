@@ -111,9 +111,10 @@ export default class Profile extends React.Component {
             <View style= {styles.grid}>
                 {/* {console.log(this.state.productList)} */}
                {Object.keys(this.state.productList).map((i)=> {
+                   const url = "http://dev.dailodailoma.com/";
                     return(
                             <Grid profileImage = {profile}
-                                productImage = {this.state.productList[i].image}
+                                productImage = {`http://dev.dailodailoma.com/${this.state.productList[i].image}`}
                                 title = {this.state.productList[i].title}
                                 description = {this.state.productList[i].description}
                                 price = {this.state.productList[i].price}
