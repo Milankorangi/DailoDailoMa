@@ -6,6 +6,48 @@ import pimage from '../assets/3.png';
 
 
 export default class EditProfile extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      id : 1,
+      fullname: '',
+      email: '',
+      username: '',
+      location: '',
+      gender: '',
+      date_of_birth: '',
+      phone_number: ''
+    }
+  }
+
+  update(){
+    fetch('http://dev.dailodailoma.com/api/users/?id=id/update',{
+      method: 'POST',
+      headers: {
+        'X-Requested-With' : 'XMLHttpRequest',
+        'Accept' : 'application/json',
+        'Content-type' : 'application/x-www-form-urlencoded',
+      },
+      body: qs.stringify({
+        fullname: this.state.fullname,
+        email: this.state.email,
+        username: this.state.username,
+        location: this.state.location,
+        gender: this.state.gender,
+        date_of_birth: this.state.date_of_birth,
+        phone_number: this.state.phone_number
+      })
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      console.log(responseJson);
+    })
+    .catch((error) => {
+      console.log('error is', error);
+    })
+  }
+
+
   render() {
     return(
         <View style= {styles.all}>
@@ -48,7 +90,10 @@ export default class EditProfile extends React.Component {
                             borderRightColor= 'white'
                             borderTopColor= 'white'
                             borderWidth= '1.5'
-                            onSubmitEditing= {()=> this.passwordInput.focus()}
+                            onChangeText = {(fullname) => {
+                              this.setState({fullname})
+                            }}
+                            value = {this.state.fullname}
                             autoCorrect= {false}/>
                         </View>
                         
@@ -66,7 +111,10 @@ export default class EditProfile extends React.Component {
                             borderTopColor= 'white'
                             borderWidth= '1.5'
                             returnKeyType= 'next' 
-                            onSubmitEditing= {()=> this.passwordInput.focus()}
+                            onChangeText = {(username) => {
+                              this.setState({username})
+                            }}
+                            value = {this.state.username}
                             autoCorrect= {false}/>
                         </View>
                     </View>
@@ -86,7 +134,10 @@ export default class EditProfile extends React.Component {
                     borderTopColor= 'white'
                     borderWidth= '1.5'
                     returnKeyType= 'next' 
-                    onSubmitEditing= {()=> this.passwordInput.focus()}
+                    onChangeText = {(email) => {
+                      this.setState({email})
+                    }}
+                    value = {this.state.email}
                     autoCorrect= {false}/>
                 </View>
 
@@ -104,7 +155,10 @@ export default class EditProfile extends React.Component {
                     borderTopColor= 'white'
                     borderWidth= '1.5'
                     returnKeyType= 'next' 
-                    onSubmitEditing= {()=> this.passwordInput.focus()}
+                    onChangeText = {(location) => {
+                      this.setState({location})
+                    }}
+                    value = {this.state.location}
                     autoCorrect= {false}/>
                 </View>
 
@@ -122,7 +176,10 @@ export default class EditProfile extends React.Component {
                     borderTopColor= 'white'
                     borderWidth= '1.5'
                     returnKeyType= 'next' 
-                    onSubmitEditing= {()=> this.passwordInput.focus()}
+                    onChangeText = {(gender) => {
+                      this.setState({gender})
+                    }}
+                    value = {this.state.gender}
                     autoCorrect= {false}/>
                 </View>
 
@@ -140,7 +197,10 @@ export default class EditProfile extends React.Component {
                     borderTopColor= 'white'
                     borderWidth= '1.5'
                     returnKeyType= 'next' 
-                    onSubmitEditing= {()=> this.passwordInput.focus()}
+                    onChangeText = {(date_of_birth) => {
+                      this.setState({date_of_birth})
+                    }}
+                    value = {this.state.date_of_birth}
                     autoCorrect= {false}/>
                 </View>
                 
@@ -158,14 +218,17 @@ export default class EditProfile extends React.Component {
                     borderTopColor= 'white'
                     borderWidth= '1.5'
                     returnKeyType= 'next' 
-                    onSubmitEditing= {()=> this.passwordInput.focus()}
+                    onChangeText = {(phone_number) => {
+                      this.setState({phone_number})
+                    }}
+                    value = {this.state.phone_number}
                     autoCorrect= {false}/>
                     </View>
                 
                 <View style = {styles.login}>   
                     <TouchableOpacity 
                         style={styles.buttoncontainer} 
-                        onPress={()=> this.props.navigation.navigate('Profile')}>
+                        onPress={this.update}>
                         <Text style = {styles.logintext}>
                         Done
                         </Text>

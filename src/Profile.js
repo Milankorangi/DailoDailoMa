@@ -23,7 +23,7 @@ export default class Profile extends React.Component {
           headers: {
             'Accept' : 'application/json',
             'Content-type' : 'application/json',
-            'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImE3ODQ2YjhiZDRhZWViMTY0NDliNmZiZDVmMGQ0NWQxYjE4NDIxMmIwM2UxNjUyYzRlOTMzNGVlOGI4ZTJjMWIxZDcxZGFiM2NkZmJhNzhhIn0.eyJhdWQiOiIxIiwianRpIjoiYTc4NDZiOGJkNGFlZWIxNjQ0OWI2ZmJkNWYwZDQ1ZDFiMTg0MjEyYjAzZTE2NTJjNGU5MzM0ZWU4YjhlMmMxYjFkNzFkYWIzY2RmYmE3OGEiLCJpYXQiOjE1NTgwNjgxMDYsIm5iZiI6MTU1ODA2ODEwNiwiZXhwIjoxNTg5NjkwNTA2LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.di5EhKLwxC6oivyhbQFd32VILRPZZ_P0RQZ2GjPmPngJeAGQ23Qw6YVDTte_vxScZzPG8Dbxe8OpzmP4ccG0-nNTwvvQ6m1cm8lUqH_qefrxt6O8RcNqxxxF5X1syZHl9QyjLC5mznsaxrmlueZmAuivzmNH3YM7Y7bS9kqek7SPNtQmjB2vI2WjNwOuroeZUTsUuREOuLrzkI3TLNIP6x5h21MdVkf7Opeu8trDxUNRY3gRzswJemt95DkgKkFg0U5XpmKM6IqYcvvOiLF1s8GKgK8Z8AFUotbfUbDQJgQtMCqJyIfXO9yTRrwgs2QBZm521a6ExIaleEzLuw_OuzCtu9cNOVpLluHZeSAG8B1gvzVU0fMuZAtTY5LuI1VHmywH_PGbJ_br1hzSrosfALQg2XMB0S7Ecm8YzPIedl62FUAIpHD-O8PVavnmiHUOEtzyJBZ-WE2V9S51a94pkQxeNFZWAvzok7G5PubZX7AEqK1nUG-prnPcKb9SSBdQtoPayY9INUpgwNStlLbIzWb2PojMdDD300ExAY6u7zSP8LjW3wi5RDye1qU_8onOOc_NI0hRCes21SVOQvMTALbKYhOxQjgFOvmjGxl0mPtwzCjAVEH6kO1MejCgm4m1Y76ncgpsxvkfdwSsiDnA42ZFStd3grSUQQYLsfqcYZA'
+            'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZkZmQxYjgwNjIxMWVmODMyMzExMmNmODkyODliN2RkOTNlZmI0YWFlNGUwMWIxNTJkZjU3M2ZiNzY0ZDk4ODM1ODFhNThjZGYzM2ZjZDEzIn0.eyJhdWQiOiIxIiwianRpIjoiNmRmZDFiODA2MjExZWY4MzIzMTEyY2Y4OTI4OWI3ZGQ5M2VmYjRhYWU0ZTAxYjE1MmRmNTczZmI3NjRkOTg4MzU4MWE1OGNkZjMzZmNkMTMiLCJpYXQiOjE1NTgzNDg3NjEsIm5iZiI6MTU1ODM0ODc2MSwiZXhwIjoxNTg5OTcxMTYxLCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.dYXSX59iAMQfbh3S-HKMH0eqNSJV3lftohe858QPxqlCtBu-TWFbDjl_L9SqMSRRHwQ7HPVJ4oYCBhHhXvG3QH8WlVYJOTknqfsYLJS_2Ww6z4DHZy6hdiyedd42GycQoh22yd5feUV2UJq7HotDmxrHFvXoW8FJbK9svwk1WhftkmC0aB_3oL2OgeU95ieb1AQq0QfLzRd1-75HGyCOcr8HMAa75SPB9WdLmUOBxp2QTgFbjmvwJp9uO3cTkhKp7aEFlYkgu_Tl41-VF4JAh-I9B3-S-kkvV8sJXutya9XSsHpOZFANuliReNgzSLAqvFdz4xybt7uG7J5SLtCLpOQ32Ch-yYibroFYGyl06Pz7CGKGQQyTAHy6pzLsPgxT3ztaE8gBgkE_K_acQKT2rFE6uh8RIdwY6lK4tLxqL8uyQ-dVNy1Dh1mYLMGLDmU9m7u8PWV4as-G-j5ak_G0G-Tzp2f7QvNDFH6nzJASWG3lf1ubJTczoP2yMf3XQKwlgrY_qKQWy0Fa1FtqvAP9X0gqtJIKXwY867e5BAOC8xF2cRy58rhESGmPeL2Wy3CwCnvWRVR6OkxhF9gLKSL4Vvl5w8zbGWE3pE61EJ4R4uFeZfDfD7O6d8JBdf-uErqsJoLyBNa2FGlywUoUK72IZhm0FezvV99I3C0VtfXOmaU'
           }
         })
         .then((response)=> response.json())
@@ -111,10 +111,10 @@ export default class Profile extends React.Component {
             <View style= {styles.grid}>
                 {/* {console.log(this.state.productList)} */}
                {Object.keys(this.state.productList).map((i)=> {
-                   const url = "http://dev.dailodailoma.com/";
+                   const url = `http://dev.dailodailoma.com${this.state.productList[i].featuredimages[0]}`     
                     return(
                             <Grid profileImage = {profile}
-                                productImage = {`http://dev.dailodailoma.com/${this.state.productList[i].image}`}
+                                productImage = {url}
                                 title = {this.state.productList[i].title}
                                 description = {this.state.productList[i].description}
                                 price = {this.state.productList[i].price}

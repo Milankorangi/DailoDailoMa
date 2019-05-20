@@ -9,8 +9,6 @@ import {
 } from 'react-native';
 import image from '../assets/bg.png';
 import { TextInput } from 'react-native-gesture-handler';
-import axios from 'axios';
-
 
 export default class Login extends React.Component {
   constructor(props){

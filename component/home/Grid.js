@@ -1,10 +1,32 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text, Button, Image, TouchableOpacity } from 'react-native';
-import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
+import { ScrollView, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons } from 'react-native-vector-icons';
 
 
 
 export default class Grid extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      like : false,
+      count : 0
+    }
+  }
+
+  ifLiked = () => {
+    if (this.state.like == true){
+      this.setState({
+        like: false,
+        count : this.state.count - 1
+      })
+    }
+    else{
+      this.setState({
+        like: true,
+        count : this.state.count + 1
+      })
+    }
+  }
 
   render() {
     return (
@@ -28,7 +50,7 @@ export default class Grid extends React.Component {
 
 
             <View style= {styles.box2}>
-                <Image source= {this.props.productImage} style={{width: '90%', height: '90%', margin: 8}}/>
+                <Image source= {{uri: this.props.productImage}} style={{width: '90%', height: '90%', margin: 8}}/>
             </View>
 
             
@@ -47,17 +69,28 @@ export default class Grid extends React.Component {
                     <Text style= {{font: 11, color: '#262629', paddingLeft: 4}}> Rs {this.props.price}</Text>
                 </View>
                 <View style= {{flex: 1, alignItems: 'flex-end', marginRight: 8}}>
-                    <View style= {styles.like}> 
+                  <TouchableOpacity 
+                  onPress={this.ifLiked}
+                  >
+                    <View style= {this.state.like ? styles.liked : styles.unLiked}>
                         <View>
-                            <MaterialCommunityIcons name= "heart" size= '15' color= "white"/>
+                         {(this.state.like)?
+                            <MaterialCommunityIcons name= "heart" size= '15' color= "#fff"/>
+                          :
+                            <MaterialCommunityIcons name= "heart-outline" size= '15' color= "#8f939c"/>
+                         }
                         </View>
                         <View>
-                            <Text style= {{color: 'white', fontSize: 8}}>4</Text>
+                            {(this.state.count>0)?
+                            <Text style= {this.state.like ? {color: 'white', fontSize: 8} : {color: 'black', fontSize: 8}}>{this.state.count}</Text>
+                            :
+                            <Text> </Text>
+                            }
                         </View>        
                     </View>
+                  </TouchableOpacity> 
                 </View>
             </View>
-
 
     </View>
     );
@@ -107,16 +140,26 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     
       },
-      like: {
+      liked: {
         height: 24,
         width: 32,
         borderRadius: 12,
         backgroundColor: '#d2232a',
-        alignItems: 'center',
+        flexDirection: 'row',
         justifyContent: 'center',
-        flexDirection: 'row'
-      }
-    
+        alignItems: 'center'
+      },
 
+      unLiked: {
+        height: 24,
+        width: 32,
+        borderRadius: 12,
+        backgroundColor: '#fff',
+        borderColor: '#8f939c',
+        borderWidth: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
 
 });

@@ -10,6 +10,8 @@ import {
 import image from '../assets/bg.png';
 import { TextInput } from 'react-native-gesture-handler';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
+import axios from 'axios';
+import qs from 'qs';
 
 export default class SignUp extends React.Component {
 
@@ -17,6 +19,70 @@ export default class SignUp extends React.Component {
     header: null
     }
 
+    constructor(props){
+      super(props);
+      this.state= {
+        fullname: '',
+        email: '',
+        username: '',
+        phone_number: '',
+        password: '',
+        password_confirmation: '',
+      }
+      this.signup = this.signup.bind(this);
+    }
+
+    signup = () => {
+      console.log(this.state)
+    //   const data = qs.stringify({
+    //       fullname: this.state.fullname,
+    //       email: this.state.email,
+    //       username: this.state.username,
+    //       password: this.state.password,
+    //       password_confirmation: this.state.password_confirmation
+    //   });
+
+    //   const config = {
+    //     headers : {
+    //     'X-Requested-With': 'XMLHttpRequest',
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //     'Accept': 'application/json'
+    //   }
+    // };
+
+    //   axios.post('http://dev.dailodailoma.com/api/signup', data, config)
+    //   .then((response)=> {
+    //     alert(response.message);
+    //   })
+    //   .catch((error)=> {
+    //     console.log(error);
+    //   })
+
+      fetch('http://dev.dailodailoma.com/api/signup', {
+      method: 'POST',
+      headers: {
+        'X-Requested-With' : 'XMLHttpRequest',
+        'Accept' : 'application/json',
+        'Content-type' : 'application/x-www-form-urlencoded',
+        
+      },
+      body: qs.stringify({
+          fullname: this.state.fullname,
+          email: this.state.email,
+          username: this.state.username,
+          password: this.state.password,
+          password_confirmation: this.state.password_confirmation
+      })
+    })
+    .then((response)=> response.json())
+    .then((responseJson)=> {
+        alert(responseJson.message);
+      
+    })
+    .catch((error)=> {
+      console.log('error is', error);
+    })
+    }
 
   render() {
     return(
@@ -60,11 +126,13 @@ export default class SignUp extends React.Component {
                 <TextInput 
                 style= {styles.input}
                 placeholder= 'John Doe'
-                returnKeyType= 'next' 
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
                 borderBottomWidth= '1'
-                  onSubmitEditing= {()=> this.passwordInput.focus()}
+                onChangeText= {(fullname)=> {
+                  this.setState({fullname})
+                }}
+                value= {this.state.fullname}
                 autoCorrect= {false}/>
             </View>
 
@@ -78,8 +146,10 @@ export default class SignUp extends React.Component {
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
                 borderBottomWidth= '1'
-                returnKeyType= 'next' 
-                onSubmitEditing= {()=> this.passwordInput.focus()}
+                onChangeText= {(username)=> {
+                  this.setState({username})
+                }}
+                value= {this.state.username}
                 autoCorrect= {false}/>
               </View>
 
@@ -93,8 +163,10 @@ export default class SignUp extends React.Component {
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
                 borderBottomWidth= '1'
-                returnKeyType= 'next' 
-                onSubmitEditing= {()=> this.passwordInput.focus()}
+                onChangeText= {(email)=> {
+                  this.setState({email})
+                }}
+                value= {this.state.email}
                 autoCorrect= {false}/>
               </View>
 
@@ -108,8 +180,10 @@ export default class SignUp extends React.Component {
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
                 borderBottomWidth= '1'
-                returnKeyType= 'next' 
-                onSubmitEditing= {()=> this.passwordInput.focus()}
+                onChangeText= {(phone_number)=> {
+                  this.setState({phone_number})
+                }}
+                value= {this.state.phone_number}
                 autoCorrect= {false}/>
               </View>
               
@@ -123,9 +197,11 @@ export default class SignUp extends React.Component {
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
                 borderBottomWidth= '1'
-                returnKeyType= 'go'
-                secureTextEntry
-                ref = {(input)=> this.passwordInput = input}/>
+                onChangeText= {(password)=> {
+                  this.setState({password}) 
+                }}
+                value= {this.state.password}
+                secureTextEntry = {true}/>
               </View>
 
               <View style= {styles.form}>     
@@ -138,21 +214,22 @@ export default class SignUp extends React.Component {
                 underlineColorAndroid= '#d2232a'
                 borderBottomColor= '#d2232a'
                 borderBottomWidth= '1'
-                returnKeyType= 'go'
-                secureTextEntry
-                ref = {(input)=> this.passwordInput = input}/>
+                onChangeText= {(password_confirmation)=> {
+                  this.setState({password_confirmation}) 
+                }}
+                value= {this.state.confirm_password}
+                secureTextEntry = {true}/>
               </View>
             
               <View style = {styles.login}>   
                 <TouchableOpacity 
                   style={styles.buttoncontainer} 
-                  onPress={()=> this.props.navigation.navigate('store')}>
+                  onPress={this.signup}>
                   <Text style = {styles.logintext}>
                     Login
                   </Text>
                 </TouchableOpacity>
-              </View>
-              
+              </View>              
           
           </View>
       </ImageBackground>

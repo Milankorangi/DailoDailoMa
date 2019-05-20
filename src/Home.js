@@ -81,6 +81,7 @@ export default class Home extends React.Component {
                   <Grid 
                   profileImage={profile}
                   productImage={product}
+                  price="5000"
                   />
 
                   <View style={styles.gridBox}>
@@ -90,18 +91,22 @@ export default class Home extends React.Component {
                   <Grid 
                 profileImage={profile}
                   productImage={product}
+                  price="5000"
                   />
                   <Grid 
                   profileImage={profile}
                   productImage={product}
+                  price="5000"
                   />
                   <Grid 
                   profileImage={profile}
                   productImage={product}
+                  price="5000"
                   />
                   <Grid 
                   profileImage={profile}
                   productImage={product}
+                  price="5000"
                   />
               </View>
               {/* <View> */}

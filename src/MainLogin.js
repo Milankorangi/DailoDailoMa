@@ -33,7 +33,7 @@ export default class MainLogin extends React.Component {
               </View>
               
               <View style= {styles.fg}>
-                <View style= {{flexDirection:'row', height: 48, width: 160}}>
+                <View style= {{flex: 1, flexDirection:'row', height: 48, width: 160}}>
                   <TouchableOpacity 
                       style={styles.facebook} 
                       onPress={()=> this.props.navigation.navigate('facebook')}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
+
+import FavGrid from '../component/favourite/FavGrid';
 
 import ad from '../assets/store-ad.png';
 import car from '../assets/11.png';
@@ -9,121 +10,59 @@ import profile2 from '../assets/13.png';
 import food from '../assets/14.png';
 
 export default class Home extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+          like : false,
+          count : 0
+        }
+      }
+    
+      ifLiked = () => {
+        if (this.state.like == true){
+          this.setState({
+            like: false,
+            count : this.state.count - 1
+          })
+        }
+        else{
+          this.setState({
+            like: true,
+            count : this.state.count + 1
+          })
+        }
+      }
 
   render() {
     return (
       <ScrollView style= {styles.container}>
 
           <View style= {styles.likedBox}>
-              <Text style= {styles.liked}> Stuffs you have liked </Text>
+              <Text style= {styles.allLiked}> Stuffs you have liked </Text>
           </View>
 
           <View style= {styles.grid}>
-              <View style= {styles.box}>
-                  <View style= {styles.box1}> 
-                      <View>
-                          <Image source= {profile1} style= {{height: 24, width: 24, marginLeft: 8, borderRadius: 12}}/>
-                      </View>
-                      <View style= {{alignItems: 'center'}}>
-                          <Text style= {styles.profileName}> John Doe</Text>
-                      </View>
-                  </View>
+              <FavGrid 
+              profile = {profile1}
+              profileName = "John Doe"
+              image = {car}
+              description = "Fusce Podamileb autor bibhendum"
+              price = "4000"/>
 
-                  <View style= {styles.box2}>
-                      <Image source= {car} style={{width: '90%', height: '90%', margin: 8}}/>
-                  </View>
+              <FavGrid 
+              profile = {profile2}
+              profileName = "John Doe"
+              image = {food}
+              description = "Fusce autor bibhendum"
+              price = "5000"/>
 
-                  <View style= {styles.box3}>
-                      <Text style= {{font: 11, color: '#262629', paddingRight: 4}}> Fusce auctor bibendum</Text>
-                  </View>
-
-                  <View style= {styles.box4}>
-                      <View>
-                          <Text style= {{font: 11, color: '#262629', paddingLeft: 4}}> Rs 5000000</Text>
-                      </View>
-                      <View style= {{flex: 1, alignItems: 'flex-end', marginRight: 8}}>
-                          <View style= {styles.like}> 
-                              <View>
-                                  <MaterialCommunityIcons name= "heart" size= '15' color= "white"/>
-                              </View>
-                              <View>
-                                  <Text style= {{color: 'white', fontSize: 8}}>4</Text>
-                              </View>        
-                          </View>
-                      </View>
-                  </View>
-              </View>
-
-              <View style= {styles.box}>
-                  <View style= {styles.box1}> 
-                      <View>
-                          <Image source= {profile2} style= {{height: 24, width: 24, marginLeft: 8, borderRadius: 12}}/>
-                      </View>
-                      <View style= {{alignItems: 'center'}}>
-                          <Text style= {styles.profileName}> Jone Doe</Text>
-                      </View>
-                  </View>
-
-                  <View style= {styles.box2}>
-                      <Image source= {food} style={{width: '90%', height: '90%', margin: 8}}/>
-                  </View>
-
-                  <View style= {styles.box3}>
-                      <Text style= {{font: 11, color: '#262629', paddingRight: 4}}> Fusce auctor bibendum</Text>
-                  </View>
-
-                  <View style= {styles.box4}>
-                      <View>
-                          <Text style= {{font: 11, color: '#262629', paddingLeft: 4}}> Rs 5000000</Text>
-                      </View>
-                      <View style= {{flex: 1, alignItems: 'flex-end', marginRight: 8}}>
-                          <View style= {styles.like}> 
-                              <View>
-                                  <MaterialCommunityIcons name= "heart" size= '15' color= "white"/>
-                              </View>
-                              <View>
-                                  <Text style= {{color: 'white', fontSize: 8}}>4</Text>
-                              </View>        
-                          </View>
-                      </View>
-                  </View>
-              </View>
-
-              <View style= {styles.box}>
-                  <View style= {styles.box1}> 
-                      <View>
-                          <Image source= {profile1} style= {{height: 24, width: 24, marginLeft: 8, borderRadius: 12}}/>
-                      </View>
-                      <View style= {{alignItems: 'center'}}>
-                          <Text style= {styles.profileName}> John Doe</Text>
-                      </View>
-                  </View>
-
-                  <View style= {styles.box2}>
-                      <Image source= {car} style={{width: '90%', height: '90%', margin: 8}}/>
-                  </View>
-
-                  <View style= {styles.box3}>
-                      <Text style= {{font: 11, color: '#262629', paddingRight: 4}}> Fusce auctor bibendum</Text>
-                  </View>
-
-                  <View style= {styles.box4}>
-                      <View>
-                          <Text style= {{font: 11, color: '#262629', paddingLeft: 4}}> Rs 5000000</Text>
-                      </View>
-                      <View style= {{flex: 1, alignItems: 'flex-end', marginRight: 8}}>
-                          <View style= {styles.like}> 
-                              <View>
-                                  <MaterialCommunityIcons name= "heart" size= '15' color= "white"/>
-                              </View>
-                              <View>
-                                  <Text style= {{color: 'white', fontSize: 8}}>4</Text>
-                              </View>        
-                          </View>
-                      </View>
-                  </View>
-              </View>
-
+              <FavGrid 
+              profile = {profile1}
+              profileName = "Jane Doe"
+              image = {car}
+              description = "Fusce autor bibhendum"
+              price = "2000"/>
+              
               <View style= {styles.box}>
                   <Image source= {ad} style={{width: '100%', height: '100%'}}/>
               </View>
@@ -148,7 +87,7 @@ const styles = StyleSheet.create({
   justifyContent: 'center'
   },
 
-  liked: {
+  allLiked: {
     fontSize: 14,
     color: '#515154'
   },
@@ -194,7 +133,7 @@ const styles = StyleSheet.create({
     paddingLeft: 8
 
   },
-  like: {
+  liked: {
     height: 24,
     width: 32,
     borderRadius: 12,
@@ -202,5 +141,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row'
-  }
+  },
+
+  unLiked: {
+    height: 24,
+    width: 32,
+    borderRadius: 12,
+    backgroundColor: '#fff',
+    borderColor: '#8f939c',
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 });
