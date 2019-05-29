@@ -9,13 +9,17 @@ import {
 } from 'react-native';
 import image from '../assets/bg.png';
 import { TextInput } from 'react-native-gesture-handler';
+import{ connect }from 'react-redux';
+import { getUser } from './actions/GetUser';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   constructor(props){
     super(props);
     this.state= {
-      email: '',
-      password: ''
+      user: {
+        email: '',
+        password: ''
+      }
     }
     this.login = this.login.bind(this);
   }
@@ -32,6 +36,8 @@ export default class Login extends React.Component {
   }
 
   login = () => {
+    const { user } = this.state;
+    this.props.onLogin({user});
     fetch('http://dev.dailodailoma.com/api/login', {
       method: 'POST',
       headers: {
@@ -101,7 +107,7 @@ export default class Login extends React.Component {
               onChangeText= {(email)=> {
                 this.setState({email})
               }}
-              value= {this.state.email}
+              value= {this.state.user.email}
               autoCorrect= {false}/>
           </View>
 
@@ -118,7 +124,7 @@ export default class Login extends React.Component {
               onChangeText= {(password)=> {
                 this.setState({password}) 
               }}
-              value= {this.state.password}
+              value= {this.state.user.password}
               secureTextEntry = {true}/>
           </View>
 
@@ -151,6 +157,12 @@ export default class Login extends React.Component {
   }
 
 }
+
+const mapDispatchToProps = dispatch => ({
+  onLogin: user => {
+    dispatch(getUser(user));
+  }
+})
 
 const styles = StyleSheet.create({
   container: {
@@ -234,3 +246,5 @@ const styles = StyleSheet.create({
   },
 
 });
+
+export default connect(null, mapDispatchToProps)(Login);

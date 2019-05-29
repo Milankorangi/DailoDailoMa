@@ -34,14 +34,14 @@ export default class HomeScreen extends React.Component {
                 </TouchableOpacity>
                 </View>
 
-          </View>
+        </View>
 
         <View style= {styles.top}>
-          <View style= {{flex: 3}}> 
+          <View style= {{height: 120}}> 
               <View style= {styles.black}> 
                 <Text>Contact Number</Text>
               </View>
-              <View style= {{flex: 2, backgroundColor: 'white', paddingLeft: 16,
+              <View style= {{flex: 2, backgroundColor: 'white', paddingLeft: 16, height: 80,
                fontSize: 12, justifyContent: 'center'}}>     
                   <Text style= {{color: '#4d4e53', paddingBottom: 10}}>
                     Mobile Number
@@ -51,21 +51,18 @@ export default class HomeScreen extends React.Component {
                   placeholder= '9804355990'
                   underlineColorAndroid= '#d2232a'
                   borderBottomColor= '#d2232a'
-                  borderLeftColor= 'white'
-                  borderRightColor= 'white'
-                  borderTopColor= 'white'
-                  borderWidth= '1.5'
-                  onSubmitEditing= {()=> this.passwordInput.focus()}
+                  borderBottomWidth= '1'
+                  
                   autoCorrect= {false}/>
               </View>
           </View>
 
-          <View style= {{flex: 3}}> 
+          <View> 
               <View style= {styles.black}>
                 <Text > Meet Up or Delivery</Text> 
               </View>
               
-              <View style= {{flex: 1, backgroundColor: 'white', paddingLeft: 16, flexDirection: 'row',
+              <View style= {{height: 48, backgroundColor: 'white', paddingLeft: 16, flexDirection: 'row',
               fontSize: 12, justifyContent: 'center', borderBottomColor: '#edf0f7', borderBottomWidth: '1'}}> 
                 
                   <View style= {{flex: 1, justifyContent: 'center',}}>
@@ -80,11 +77,9 @@ export default class HomeScreen extends React.Component {
                       width= '15'
                       />
                   </View>
-
-
               </View>
               
-              <View  style= {{flex: 1, backgroundColor: 'white', paddingLeft: 16, flexDirection: 'row', 
+              <View  style= {{height: 48, backgroundColor: 'white', paddingLeft: 16, flexDirection: 'row', 
               fontSize: 12, borderTopColor: '#edf0f7', borderTopWidth: '1'}}> 
                 
                 <View style= {{flex: 1, justifyContent: 'center',}}>
@@ -99,24 +94,22 @@ export default class HomeScreen extends React.Component {
                     />
                 </View>
               </View>
-            </View>
+          </View>
 
           <View style={{ flex: 2.8}}> 
               <View style= {styles.black}> 
                 <Text> Location </Text>
               </View>
-              <View  style= {{flex: 2, backgroundColor: 'white', paddingLeft: 16, 
+              <View  style= {{height: 64, backgroundColor: 'white', paddingLeft: 16, 
               fontSize: 12, justifyContent: 'center'}}> 
-                <Text style= {styles.text}> Add Location for meet up </Text>
+                <TextInput 
+                  style= {styles.text}
+                  placeholder= 'Add Location for meet up'
+                  autoCorrect= {false}/>
               </View>
           </View>
         
         </View>
-
-
-          <View style= {styles.down}>
-
-          </View>
       </View>
     
     );
@@ -161,13 +154,11 @@ const styles = StyleSheet.create({
   },
 
   top: {
-    flex: 1.125,
+    height: 360
   },
-  down: {
-    flex: 1
-  },
+
   black: {
-    flex:1,
+    height: 40,
     fontSize: 12,
     paddingLeft: 16,
     justifyContent: 'center',

@@ -8,7 +8,7 @@ export default class SellCatagory extends React.Component {
     return(
     <View style= {styles.catagory}> 
         <View style= {styles.icon}> 
-            <Image source= {{uri: this.props.iconUrl}} style= {{size: 20}}/>
+            <Image source= {{uri: this.props.iconUrl}} style= {{heght: '100%'}}/>
         </View>
 
         <View style= {{flex:4.5, justifyContent: 'center', }}> 

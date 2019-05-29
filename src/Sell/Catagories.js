@@ -64,7 +64,7 @@ componentDidMount(){
           <ScrollView>
             <View>
               {Object.keys(this.state.catagoryList).map((i)=> {
-                const url = `http://dev.dailodailoma.com${this.state.catagoryList[0].images[0]}`
+                const url = `http://dev.dailodailoma.com${this.state.catagoryList[i].icon}`
                 console.log(url);    
                       return(
                           <SellCatagory 
