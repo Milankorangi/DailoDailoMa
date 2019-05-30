@@ -1,13 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
-import ImagePicker from 'react-native-image-picker';
-
-const options ={
-  title: 'Choose Image Options',
-  takePhotoButtonTitle: 'Open Camera',
-  chooseFromLibraryButtonTitle: 'Choose From Library'
-}
+import Dialog, { DialogContent, DialogTitle, DialogFooter, DialogButton, } from 'react-native-popup-dialog';
+import { ImagePicker, Permissions } from 'expo';
 
 export default class Sell extends React.Component {
   static navigationOptions = {
@@ -16,26 +11,40 @@ export default class Sell extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      photo: null
+      photo: null,
+      isChecked: false,
+      visible: false
     }
   }
-  openCamera=()=> {
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-    
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } 
-      else {
-        const source = { uri: response.uri };
-    
-        this.setState({
-          photo: source,
-        });
-      }
+
+  openCamera= async()=> {
+    this.setState({visible: false});
+    await Permissions.askAsync(Permissions.CAMERA);
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: false,
+      aspect: [4, 3],
     });
+    console.log(result);
+    if(!result.cancelled){
+      this.setState({photo: result.uri})
+    }
+  }
+
+  openGallery= async()=> {
+    this.setState({visible: false});
+    await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: false,
+      aspect: [4, 3],
+    });
+    console.log(result);
+    if(!result.cancelled){
+      this.setState({photo: result.uri})
+    }
+  }
+
+  openDialog = () => {
+    this.setState({visible: true});
   }
   render(){
     return(
@@ -43,50 +52,102 @@ export default class Sell extends React.Component {
       <View style= {styles.container}> 
           <View style= {styles.header}>
                   <View style= {styles.first}>
-                  <TouchableOpacity 
-                      onPress={()=> this.props.navigation.navigate('Home')}>
-                      <MaterialCommunityIcons name='arrow-left'  size= '25' style= {{color: '#fff' }} />
-                  </TouchableOpacity>
+                      <TouchableOpacity 
+                          onPress={()=> this.props.navigation.navigate('Home')}>
+                          <MaterialCommunityIcons name='arrow-left'  size= '25' style= {{color: '#fff' }} />
+                      </TouchableOpacity>
                   </View>
                   <View style= {styles.second}>
                       <Text style= {{fontSize: 18, color: '#fff'}}> Sell an Item </Text>   
                   </View>
           </View>
 
-          <View style= {styles.camera}>
+          <View style= {styles.camera}>                
                 <View style= {styles.add} >
                     < TouchableOpacity 
-                        onPress={this.openCamera}>
+                        onPress={this.openDialog}>
                         <FontAwesome name="camera" size= "60"/>
                     </TouchableOpacity>
-                  </View>
-
-                <View style= {styles.show}>
-
-                 </View>
-
+                    <Dialog
+                        visible={this.state.visible}
+                        onTouchOutside={() => {
+                          this.setState({ visible: false });
+                        }}
+                        dialogTitle={<DialogTitle title="Choose Image" />}
+                        footer={
+                          <DialogFooter>
+                            <DialogButton
+                              text="CAMERA"
+                              onPress={this.openCamera}
+                            />
+                            <DialogButton
+                              text="GALLERY"
+                              onPress={this.openGallery}
+                            />
+                          </DialogFooter>
+                        }
+                      >
+                        <DialogContent style={{justifyContent: 'center', alignItems: 'center'}}>
+                          <Text style={{paddingTop: 15}}>Choose Image using Camera or Gallery</Text>
+                        </DialogContent>
+                    </Dialog>
+                </View>
+                {
+                  (!this.state.photo==null)?
+                  <View style= {styles.show}>
+                      <Image source= {{uri: this.state.photo}} style={{height: '100%', width: '100%'}}/>
+                  </View>:
+                  <Image />
+                }
           </View>
 
-          <View style= {styles.catagory}>
-            <TouchableOpacity
-             onPress={()=> this.props.navigation.navigate('Catagories')} >
-              <Text style= {styles.text}> Choose Catagory </Text>
-            </TouchableOpacity>
+          <View style= {{height: 56, backgroundColor: '#fff',}}>
+              <TouchableOpacity
+              onPress={()=> this.props.navigation.navigate('Catagories')} >
+                <View style= {styles.cata}>
+                    <View style={{width: 300}}>
+                        <Text style= {styles.text}> Choose Catagory </Text>
+                    </View>
+                    <View>
+                        {(this.state.isChecked) ? 
+                        <FontAwesome name="check" size= "25" color= "#d2232a" /> :
+                        <MaterialCommunityIcons />}
+                    </View>
+                </View>
+              </TouchableOpacity>
           </View >
 
-          <View style= {styles.description}>
-            <TouchableOpacity
-            onPress={()=> this.props.navigation.navigate('Description')} >
-                <Text style= {styles.text}> Add Description </Text>
-            </TouchableOpacity>
+          <View style= {{height: 56, backgroundColor: '#fff', backgroundColor: '#fff',}}>
+              <TouchableOpacity
+              onPress={()=> this.props.navigation.navigate('Description')} >
+                <View style= {styles.cata}>
+                    <View style={{width: 300}}>
+                        <Text style= {styles.text}> Add Description </Text>
+                    </View>
+                    <View>
+                        {(this.state.isChecked) ? 
+                        <FontAwesome name="check" size= "25" color= "#d2232a" /> :
+                        <MaterialCommunityIcons />}
+                    </View>
+                </View>
+              </TouchableOpacity>
           </View >
 
-          <View style= {styles.information}>
-          <TouchableOpacity
-            onPress={()=> this.props.navigation.navigate('ContactInformation')} >
-              <Text style= {styles.text}> Contact Information </Text>
-            </TouchableOpacity>
-          </View>
+          <View style= {{height: 56, backgroundColor: '#fff'}}>
+              <TouchableOpacity
+              onPress={()=> this.props.navigation.navigate('ContactInformation')} >
+                <View style= {styles.cata}>
+                    <View style={{width: 300}}>
+                        <Text style= {styles.text}> Contact Information </Text>
+                    </View>
+                    <View>
+                        {(this.state.isChecked) ? 
+                        <FontAwesome name="check" size= "25" color= "#d2232a" /> :
+                        <MaterialCommunityIcons />}
+                    </View>
+                </View>
+              </TouchableOpacity>
+          </View >
 
           <View style= {styles.sell}>
               <TouchableOpacity 
@@ -107,8 +168,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#edf0f7',
   },
+
   camera: {
-    flex: 2.5,
+    height: 128,
     flexDirection: 'row',
     backgroundColor: '#fff',
     borderColor: '#edf0f7',
@@ -116,7 +178,8 @@ const styles = StyleSheet.create({
 
   },
   add: {
-    flex: 1,
+    height: 96,
+    width: 96,
     backgroundColor: '#8f939c',
     margin: 16,
     borderRadius: 4,
@@ -124,50 +187,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
 
   },
-  show: {
-    flex:2
 
-  },
-
-  catagory: {
-    flex: 1,
+  cata: {
+    height: 56,
+    flexDirection: 'row',
     backgroundColor: '#fff',
     borderWidth: 4,
     borderColor: '#edf0f7',
-    justifyContent: 'center'
+    alignItems: 'center'
   },
 
-  description: {
-    flex: 1,
-    backgroundColor: '#fff',
-    borderWidth: 4,
-    borderColor: '#edf0f7',
-    justifyContent: 'center'
-  },
-
-  information: {
-    flex: 1,
-    backgroundColor: '#fff',
-    borderWidth: 4,
-    borderColor: '#edf0f7',
-    justifyContent: 'center'
-    
-  },
   sell: {
-    flex: 6,
+    height: 360,
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
   },
   buttoncontainer:{
     backgroundColor: '#d2232a',
     alignItems: 'center',
-    width: '40%',
-    height: '15%',
+    width: 160,
+    height: 48,
     borderWidth: 1,
     borderColor: '#edf0f7',
     borderRadius: 4,
-    marginBottom: '20%',
-    marginRight: '5%'
+    marginBottom: 80,
+    marginRight: 16
   },
 
   logintext: {
@@ -204,6 +248,19 @@ const styles = StyleSheet.create({
         marginTop: 20,
         justifyContent: 'center',
         alignItems: 'center'
+  
+    },
+
+    show: {
+      height: 97,
+      width: 97,
+      backgroundColor: '#8f939c',
+      margin: 16,
+      marginLeft: 8,
+      marginRight: 8,
+      borderRadius: 4,
+      alignItems: 'center',
+      justifyContent: 'center'
   
     },
 

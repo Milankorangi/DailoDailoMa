@@ -12,7 +12,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import{ connect }from 'react-redux';
 import { getUser } from './actions/GetUser';
 
-class Login extends React.Component {
+export default class Login extends React.Component {
   constructor(props){
     super(props);
     this.state= {
@@ -158,11 +158,11 @@ class Login extends React.Component {
 
 }
 
-const mapDispatchToProps = dispatch => ({
-  onLogin: user => {
-    dispatch(getUser(user));
-  }
-})
+// const mapDispatchToProps = dispatch => ({
+//   onLogin: user => {
+//     dispatch(getUser(user));
+//   }
+// })
 
 const styles = StyleSheet.create({
   container: {
@@ -247,4 +247,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+//export default connect(null, mapDispatchToProps)(Login);

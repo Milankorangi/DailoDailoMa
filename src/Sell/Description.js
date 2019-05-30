@@ -1,13 +1,13 @@
 import React from 'react';
-import CheckBox from 'react-native-elements';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import CheckBox from 'react-native-check-box';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
 
 export default class Description extends React.Component {
   constructor(){
     super();
     this.state = {
-      isChecked: false
+      isChecked: true
     }
   }
   render(){
@@ -103,27 +103,46 @@ export default class Description extends React.Component {
                       <Text style= {styles.heading}> ITEM CONDITION</Text>
                   </View>
                   <View style = {styles.itemNew}>
-                      <View >
+                      <View style={{flex: 1, justifyContent: 'center'}} >
                           <Text style= {styles.condition}>New</Text>
                       </View>
-                      <View>
-                          <CheckBox />
+                      <View style={{justifyContent: 'center', alignItems: 'flex-end', paddingRight: 16}} >
+                          <CheckBox 
+                          checkedImage={<MaterialCommunityIcons name="circle-slice-8" size='20' style={{color:'#33a0e8'}}/>}
+                          unCheckedImage={<MaterialCommunityIcons name='circle-outline' size='20' style={{color: '#8f939c'}}/>}
+                          onClick = {() => {
+                            this.setState({isChecked: !this.state.isChecked})
+                          }}
+                          isChecked= {this.state.isChecked}/>
                       </View>
                   </View>
                   <View style = {styles.item}> 
-                      <View >
+                      <View style={{flex: 1, justifyContent: 'center'}} >
                           <Text style= {styles.condition}> Used </Text>
                       </View>
-                      <View>
-                          <CheckBox />
+                      <View style={{justifyContent: 'center', alignItems: 'flex-end', paddingRight: 16}} >
+                          <CheckBox 
+                          checkedImage={<MaterialCommunityIcons name="circle-slice-8" size='20' style={{color:'#33a0e8'}}/>}
+                          unCheckedImage={<MaterialCommunityIcons name='circle-outline' size='20' style={{color: '#8f939c'}}/>}
+                          onClick = {() => {
+                            this.setState({isChecked: !this.state.isChecked})
+                          }}
+                          isChecked= {!this.state.isChecked}/>
                       </View>
                   </View>
                   <View style = {styles.item}>
-                      <View >
+                      <View style={{flex: 1,justifyContent: 'center'}} >
                           <Text style= {styles.condition}> Old </Text>
                       </View>
-                      <View>
-                          <CheckBox />
+                      <View style={{justifyContent: 'center', paddingRight: 16}} >
+                          <CheckBox 
+                          checkedImage={<MaterialCommunityIcons name="circle-slice-8" size='20' style={{color:'#33a0e8'}}/>}
+                          unCheckedImage={<MaterialCommunityIcons name='circle-outline' size='20' style={{color: '#8f939c'}} />}             
+                          style= {{alignItems: "flex-end"}}
+                          onClick = {() => {
+                            this.setState({isChecked: !this.state.isChecked})
+                          }}
+                          isChecked= {!this.state.isChecked}/>
                       </View>
                   </View>
               </View>
@@ -139,7 +158,7 @@ export default class Description extends React.Component {
                             Give a short description about the item you want to sell
                           </Text>
                       </View>
-                      <View style= {{marginLeft: '4%', marginRight: '5%', height: 86}}>
+                      <View style= {{ justifyContent: 'center', marginLeft: '4%', marginRight: '5%', height: 86}}>
                         <TextInput 
                           style= {styles.input}
                           placeholder= 'Description about Item you want to sell'
@@ -257,7 +276,6 @@ price: {
 
 item: {
   height: 48,
-  justifyContent: 'center',
   borderColor: '#edf0f7',
   borderWidth: 0.5,
   flexDirection: 'row'
@@ -265,7 +283,6 @@ item: {
 
 itemNew: {
   height: 48,
-  justifyContent: 'center',
   borderColor: '#edf0f7',
   borderBottomWidth: 0.5,
   flexDirection: 'row'
@@ -282,7 +299,7 @@ textDes: {
 },
 
 textDescription: {
-  colot: '#8f939c',
+  color: '#8f939c',
   fontSize: 10,
   paddingLeft: 16,
   paddingTop: 13,

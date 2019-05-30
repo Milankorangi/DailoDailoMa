@@ -4,20 +4,36 @@ import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
 
 
 export default class SellCatagory extends React.Component {
+constructor(){
+  super();
+    this.state= {
+      isChecked: false
+    }
+}
+
   render(){
     return(
-    <View style= {styles.catagory}> 
-        <View style= {styles.icon}> 
-            <Image source= {{uri: this.props.iconUrl}} style= {{heght: '100%'}}/>
-        </View>
+    <View>
+      <TouchableOpacity
+      onPress={()=>{
+        this.setState({isChecked: true})
+      }}> 
+          <View  style= {styles.catagory}>
+                <View style= {styles.icon}> 
+                    <Image source= {{uri: this.props.iconUrl}} />
+                </View>
 
-        <View style= {{flex:4.5, justifyContent: 'center', }}> 
-            <Text style= {styles.text}> {this.props.catName} </Text> 
-        </View>
-        
-        <View style= {styles.addTick}> 
-            <FontAwesome name="plus" size= "14" color= "#8f939c" paddingLeft= '18' paddingTop= '18'/> 
-        </View>
+                <View style= {{width: 250, justifyContent: 'center', }}> 
+                    <Text style= {styles.text}> {this.props.catName} </Text> 
+                </View>
+                
+                <View style= {styles.addTick}>
+                  {(this.state.isChecked) ? 
+                    <FontAwesome name="check" size= "25" color= "#d2232a" /> :
+                    <MaterialCommunityIcons name="plus-circle" size= "25" color= "#8f939c" />}
+                </View>
+          </View>
+      </TouchableOpacity>
     </View>
     );
   }
@@ -27,7 +43,7 @@ const styles = StyleSheet.create({
   catagory: {
     height: 72,
     flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderColor: '#eceff6',
@@ -55,14 +71,11 @@ const styles = StyleSheet.create({
   },
 
   addTick: {
-    height:24, 
-    width:24, 
-    marginTop: 24, 
+    height:72, 
+    width:50, 
     marginRight: 21, 
     justifyContent: 'center', 
     alignItems: 'center', 
-    borderRadius: 12, 
-    backgroundColor: '#f3f3f3', 
   }
   
 });

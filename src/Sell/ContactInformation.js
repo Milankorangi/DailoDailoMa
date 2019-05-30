@@ -29,7 +29,7 @@ export default class HomeScreen extends React.Component {
                 
                 <View style= {styles.third}>
                 <TouchableOpacity 
-                    onPress={()=> this.props.navigation.navigate('FinalSell')}>
+                    onPress={()=> this.props.navigation.navigate('Sell')}>
                     <Text style= {{fontSize: 12, color: '#fff', justifyContent: 'flex-end', paddingRight: 10}}> Next</Text>
                 </TouchableOpacity>
                 </View>
