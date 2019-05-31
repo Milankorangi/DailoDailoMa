@@ -23,6 +23,7 @@ export default class Sell extends React.Component {
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: false,
       aspect: [4, 3],
+      quality: 1,
     });
     console.log(result);
     if(!result.cancelled){
@@ -36,6 +37,7 @@ export default class Sell extends React.Component {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: false,
       aspect: [4, 3],
+      quality: 1
     });
     console.log(result);
     if(!result.cancelled){
@@ -62,7 +64,13 @@ export default class Sell extends React.Component {
                   </View>
           </View>
 
-          <View style= {styles.camera}>                
+          <View style= {styles.camera}>
+                  {(!(this.state.photo==null)) ?
+                      <View style= {styles.show}>
+                          <Image source={{uri: this.state.photo}} style= {{height: '100%', width: '100%'}}/>
+                      </View> :
+                      <Image />
+                 }                
                 <View style= {styles.add} >
                     < TouchableOpacity 
                         onPress={this.openDialog}>
@@ -74,7 +82,7 @@ export default class Sell extends React.Component {
                           this.setState({ visible: false });
                         }}
                         dialogTitle={<DialogTitle title="Choose Image" />}
-                        footer={
+                          footer={
                           <DialogFooter>
                             <DialogButton
                               text="CAMERA"
@@ -92,13 +100,7 @@ export default class Sell extends React.Component {
                         </DialogContent>
                     </Dialog>
                 </View>
-                {
-                  (!this.state.photo==null)?
-                  <View style= {styles.show}>
-                      <Image source= {{uri: this.state.photo}} style={{height: '100%', width: '100%'}}/>
-                  </View>:
-                  <Image />
-                }
+                
           </View>
 
           <View style= {{height: 56, backgroundColor: '#fff',}}>

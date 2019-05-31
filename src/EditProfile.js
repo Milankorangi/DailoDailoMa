@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, ScrollView, Text, StyleSheet, TouchableOpacity, TextInput, Image} from 'react-native';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
+import Dialog, { DialogContent, DialogTitle, DialogFooter, DialogButton, } from 'react-native-popup-dialog';
+import { ImagePicker, Permissions } from 'expo';
 import qs from 'qs';
 
-import profile from '../assets/3.png';
 
 export default class EditProfile extends React.Component {
   constructor(){
@@ -21,7 +22,39 @@ export default class EditProfile extends React.Component {
       facebook_url: '',
       twitter_url: '',
       website_url: '',
+      photo: null,
+      visible: false
     }
+  }
+
+  openCamera= async()=> {
+    this.setState({visible: false});
+    await Permissions.askAsync(Permissions.CAMERA);
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: false,
+      aspect: [4, 3],
+    });
+    console.log(result);
+    if(!result.cancelled){
+      this.setState({photo: result.uri})
+    }
+  }
+
+  openGallery= async()=> {
+    this.setState({visible: false});
+    await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: false,
+      aspect: [4, 3],
+    });
+    console.log(result);
+    if(!result.cancelled){
+      this.setState({photo: result.uri})
+    }
+  }
+
+  openDialog = () => {
+    this.setState({visible: true});
   }
 
   componentDidMount(){
@@ -110,15 +143,39 @@ export default class EditProfile extends React.Component {
                 <View style= { styles.picname}>
                     <View style= {styles.pic}>  
                         <View style= {styles.picture}>
-                            <Image source={profile} style= {{height: '100%', width: '100%'}}/>
+                            <Image source={{uri: this.state.photo}} style= {{height: '100%', width: '100%'}}/>
                         </View>
                         
                         <View style= {styles.picturename}>
                             <TouchableOpacity
                             style={styles.uploadpic}
-                            onPress={this.takePicture}>
+                            onPress={this.openDialog}>
                                 <Text style={{color: 'white'}}> Change Picture </Text>
                             </TouchableOpacity> 
+
+                            <Dialog
+                                visible={this.state.visible}
+                                onTouchOutside={() => {
+                                  this.setState({ visible: false });
+                                }}
+                                dialogTitle={<DialogTitle title="Choose Image" />}
+                                footer={
+                                <DialogFooter>
+                                    <DialogButton
+                                      text="CAMERA"
+                                      onPress={this.openCamera}
+                                    />
+                                    <DialogButton
+                                      text="GALLERY"
+                                      onPress={this.openGallery}
+                                    />
+                                </DialogFooter>
+                                }
+                            >
+                                <DialogContent style={{justifyContent: 'center', alignItems: 'center'}}>
+                                  <Text style={{paddingTop: 15}}>Choose Image using Camera or Gallery</Text>
+                                </DialogContent>
+                            </Dialog>
                         </View>
 
                     </View>
